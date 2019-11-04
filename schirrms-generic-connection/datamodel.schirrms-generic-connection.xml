@@ -1,0 +1,2908 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<itop_design xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.5">
+	<constants>
+	</constants>
+	<classes>
+		<!-- This class stores all types of connectors : Optical Fiber, RJ-45, DB-9...-->
+		<class id="GenericPhysCommConnector" _delta="define">
+			<parent>cmdbAbstractObject</parent>
+			<properties>
+				<category>bizmodel,searchable</category>
+				<abstract>false</abstract>
+				<key_type>autoincrement</key_type>
+				<db_table>genericphyscommconnector</db_table>
+				<db_key_field>id</db_key_field>
+				<db_final_class_field/>
+				<naming>
+					<format>%1$s</format>
+					<attributes>
+						<attribute id="name"/>
+					</attributes>
+				</naming>
+				<display_template/>
+				<reconciliation>
+					<attributes>
+						<attribute id="name"/>
+					</attributes>
+				</reconciliation>
+			</properties>
+			<fields>
+				<field id="name" xsi:type="AttributeString">
+					<sql>name</sql>
+					<default_value/>
+					<is_null_allowed>false</is_null_allowed>
+				</field>
+				<field id="comment" xsi:type="AttributeText">
+					<sql>comment</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+				<field id="genericcommphysinterface_list" xsi:type="AttributeLinkedSet">
+					<linked_class>GenericCommPhysInterface</linked_class>
+					<ext_key_to_me>physcommtype_id</ext_key_to_me>
+					<edit_mode>add_only</edit_mode>
+					<count_min>0</count_min>
+					<count_max>0</count_max>
+					<duplicates/>
+				</field>
+			</fields>
+			<methods>
+			</methods>
+			<presentation>
+				<details>
+					<items>
+						<item id="name">
+							<rank>10</rank>
+						</item>
+						<item id="comment">
+							<rank>20</rank>
+						</item>
+						<item id="genericcommphysinterface_list">
+							<rank>30</rank>
+						</item>
+					</items>
+				</details>
+				<list>
+					<items>
+						<item id="name">
+							<rank>10</rank>
+						</item>
+						<item id="comment">
+							<rank>20</rank>
+						</item>
+					</items>
+				</list>
+				<search>
+					<items>
+						<item id="name">
+							<rank>10</rank>
+						</item>
+						<item id="comment">
+							<rank>20</rank>
+						</item>
+					</items>
+				</search>
+			</presentation>
+		</class>
+		<!-- This class stores all kind of 'level two' protocols : Ethernet, Fiber Channel, RS-232... -->
+		<class id="GenericCommProtocol" _delta="define">
+			<parent>cmdbAbstractObject</parent>
+			<properties>
+				<category>bizmodel,searchable</category>
+				<abstract>false</abstract>
+				<key_type>autoincrement</key_type>
+				<db_table>genericcommprotocol</db_table>
+				<db_key_field>id</db_key_field>
+				<db_final_class_field/>
+				<naming>
+					<attributes>
+						<attribute id="name"/>
+					</attributes>
+				</naming>
+				<display_template/>
+				<reconciliation>
+					<attributes>
+						<attribute id="name"/>
+					</attributes>
+				</reconciliation>
+			</properties>
+			<fields>
+				<field id="name" xsi:type="AttributeString">
+					<sql>name</sql>
+					<default_value/>
+					<is_null_allowed>false</is_null_allowed>
+				</field>
+				<field id="comment" xsi:type="AttributeText">
+					<sql>comment</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+				<field id="genericcomminterface_list" xsi:type="AttributeLinkedSet">
+					<linked_class>GenericCommInterface</linked_class>
+					<ext_key_to_me>commproto_id</ext_key_to_me>
+					<edit_mode>add_only</edit_mode>
+					<count_min>0</count_min>
+					<count_max>0</count_max>
+					<duplicates/>
+				</field>
+			</fields>
+			<methods>
+			</methods>
+			<presentation>
+				<details>
+					<items>
+						<item id="name">
+							<rank>10</rank>
+						</item>
+						<item id="comment">
+							<rank>20</rank>
+						</item>
+						<item id="genericcomminterface_list">
+							<rank>30</rank>
+						</item>
+					</items>
+				</details>
+				<search>
+					<items>
+						<item id="name">
+							<rank>10</rank>
+						</item>
+						<item id="comment">
+							<rank>20</rank>
+						</item>
+					</items>
+				</search>
+				<list>
+					<items>
+						<item id="name">
+							<rank>10</rank>
+						</item>
+						<item id="comment">
+							<rank>20</rank>
+						</item>
+					</items>
+				</list>
+			</presentation>
+		</class>
+		<!-- This class stores speeds for the interfaces (instead of setting the speed individually for each interface) -->
+		<class id="GenericCommSpeed" _delta="define">
+			<parent>cmdbAbstractObject</parent>
+			<properties>
+				<category>bizmodel,searchable</category>
+				<abstract>false</abstract>
+				<key_type>autoincrement</key_type>
+				<db_table>genericcommspeed</db_table>
+				<db_key_field>id</db_key_field>
+				<db_final_class_field/>
+				<naming>
+					<attributes>
+						<attribute id="humanspeed"/>
+					</attributes>
+				</naming>
+				<display_template/>
+				<reconciliation>
+					<attributes>
+						<attribute id="humanspeed"/>
+					</attributes>
+				</reconciliation>
+			</properties>
+			<fields>
+				<field id="humanspeed" xsi:type="AttributeString">
+					<sql>humanspeed</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+				<field id="bitspeed" xsi:type="AttributeDecimal">
+					<sql>bitspeed</sql>
+					<default_value/>
+					<is_null_allowed>false</is_null_allowed>
+					<duplicates>false</duplicates>
+					<digits>18</digits>
+					<decimals>0</decimals>
+				</field>
+				<field id="comment" xsi:type="AttributeText">
+					<sql>comment</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+				<field id="genericcomminterface_list" xsi:type="AttributeLinkedSet">
+					<linked_class>GenericCommInterface</linked_class>
+					<ext_key_to_me>humanspeed_id</ext_key_to_me>
+					<edit_mode>add_only</edit_mode>
+					<count_min>0</count_min>
+					<count_max>0</count_max>
+					<duplicates/>
+				</field>
+			</fields>
+			<methods>
+				<method id="GetAttributeFlags">
+					<static>false</static>
+					<access>public</access>
+					<type>Overload-DBObject</type>
+					<code><![CDATA[ public function GetAttributeFlags($sAttCode, &$aReasons = array(), $sTargetState = '')
+					{
+						// Force the computed field to be read-only, preventing it to be written
+						if (($sAttCode == 'humanspeed'))
+							return(OPT_ATT_READONLY | parent::GetAttributeFlags($sAttCode, $aReasons, $sTargetState));
+						return parent::GetAttributeFlags($sAttCode, $aReasons, $sTargetState);
+					}]]></code>
+				</method>
+				<method id="GetInitialStateAttributeFlags">
+					<static>false</static>
+					<access>public</access>
+					<type>Overload-DBObject</type>
+					<code><![CDATA[public function GetInitialStateAttributeFlags($sAttCode, &$aReasons = array())
+					{
+						// Hide the calculated field in object creation form
+						if (($sAttCode == 'humanspeed'))
+							return(OPT_ATT_HIDDEN | parent::GetInitialStateAttributeFlags($sAttCode, $aReasons));
+						return parent::GetInitialStateAttributeFlags($sAttCode, $aReasons);
+					}]]></code>
+				</method>
+				<method id="OnInsert">
+					<static>false</static>
+					<access>public</access>
+					<type>Overload-DBObject</type>
+					<code><![CDATA[	public function OnInsert()
+					{
+						$this->SetHumanSpeed();
+					}]]></code>
+				</method>
+				<method id="OnUpdate">
+					<static>false</static>
+					<access>public</access>
+					<type>Overload-DBObject</type>
+					<code><![CDATA[	public function OnUpdate()
+					{
+						$this->SetHumanSpeed();
+					}]]></code>
+				</method>
+				<method id="SetHumanSpeed">
+					<static>false</static>
+					<access>public</access>
+					<type>Overload-DBObject</type>
+					<code><![CDATA[public function SetHumanSpeed()
+					{
+						// read the new value of the bitSpeed
+						$dBitSpeed = $this->Get('bitspeed');
+
+						// failsafe, the field cannot be empty
+						$sHumanSpeed = $dBitSpeed." b";
+
+						if(is_numeric($dBitSpeed))
+						{
+							$sUnit = ' KMGTP';
+							for ($iLevel=15; $iLevel >0 ;$iLevel=$iLevel-3)
+							{
+								if ($dBitSpeed >= 10**$iLevel)
+								{
+									$sHumanSpeed = sprintf('%.3g ', $dBitSpeed / (10**$iLevel)) . substr($sUnit, $iLevel/3, 1) . 'b/s';
+									break;
+								}
+							}
+						}
+
+						$this->Set('humanspeed', $sHumanSpeed);
+					}]]></code>
+				</method>
+			</methods>
+			<presentation>
+				<details>
+					<items>
+						<item id="bitspeed">
+							<rank>10</rank>
+						</item>
+						<item id="humanspeed">
+							<rank>20</rank>
+						</item>
+						<item id="comment">
+							<rank>30</rank>
+						</item>
+						<item id="genericcomminterface_list">
+							<rank>40</rank>
+						</item>
+					</items>
+				</details>
+				<list>
+					<items>
+						<item id="bitspeed">
+							<rank>10</rank>
+						</item>
+						<item id="humanspeed">
+							<rank>20</rank>
+						</item>
+						<item id="comment">
+							<rank>30</rank>
+						</item>
+					</items>
+				</list>
+				<search>
+					<items>
+						<item id="humanspeed">
+							<rank>10</rank>
+						</item>
+						<item id="comment">
+							<rank>20</rank>
+						</item>
+					</items>
+				</search>
+			</presentation>
+		</class>
+		<!-- This class stores redundancy protocols for virtual interfaces : LACP, active/standby, active/active... -->
+		<class id="VirtualCommRedundancy" _delta="define">
+			<parent>cmdbAbstractObject</parent>
+			<properties>
+				<category>bizmodel,searchable</category>
+				<abstract>false</abstract>
+				<key_type>autoincrement</key_type>
+				<db_table>virtualcommredundancy</db_table>
+				<db_key_field>id</db_key_field>
+				<db_final_class_field/>
+				<naming>
+					<attributes>
+						<attribute id="name"/>
+					</attributes>
+				</naming>
+				<display_template/>
+				<reconciliation>
+					<attributes>
+						<attribute id="name"/>
+					</attributes>
+				</reconciliation>
+			</properties>
+			<fields>
+				<field id="name" xsi:type="AttributeString">
+					<sql>name</sql>
+					<default_value/>
+					<is_null_allowed>false</is_null_allowed>
+				</field>
+				<field id="comment" xsi:type="AttributeText">
+					<sql>comment</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+				<field id="virtualcommredundancy_list" xsi:type="AttributeLinkedSet">
+					<linked_class>GenericCommVirtInterface</linked_class>
+					<ext_key_to_me>virtualcommredundancy_id</ext_key_to_me>
+					<edit_mode>add_only</edit_mode>
+					<count_min>0</count_min>
+					<count_max>0</count_max>
+					<duplicates/>
+				</field>
+			</fields>
+			<methods>
+			</methods>
+			<presentation>
+				<details>
+					<items>
+						<item id="name">
+							<rank>10</rank>
+						</item>
+						<item id="comment">
+							<rank>20</rank>
+						</item>
+						<item id="virtualcommredundancy_list">
+							<rank>30</rank>
+						</item>
+					</items>
+				</details>
+				<search>
+					<items>
+						<item id="name">
+							<rank>10</rank>
+						</item>
+						<item id="comment">
+							<rank>20</rank>
+						</item>
+						<item id="virtualcommredundancy_list">
+							<rank>30</rank>
+						</item>
+					</items>
+				</search>
+				<list>
+					<items>
+						<item id="name">
+							<rank>10</rank>
+						</item>
+						<item id="comment">
+							<rank>20</rank>
+						</item>
+						<item id="virtualcommredundancy_list">
+							<rank>30</rank>
+						</item>
+					</items>
+				</list>
+			</presentation>
+		</class>
+		<!-- This abstract class defines a Layer 1 Generic Communication Interface. -->
+		<class id="GenericCommLayer1Interface" _delta="define">
+			<parent>cmdbAbstractObject</parent>
+			<properties>
+				<category>bizmodel,searchable</category>
+				<abstract>true</abstract>
+				<key_type>autoincrement</key_type>
+				<db_table>genericcommlayer1interface</db_table>
+				<db_key_field>id</db_key_field>
+				<db_final_class_field>finalclass</db_final_class_field>
+				<naming>
+					<attributes>
+						<attribute id="name"/>
+					</attributes>
+				</naming>
+				<display_template/>
+				<icon/>
+				<reconciliation>
+					<attributes>
+						<attribute id="name"/>
+						<attribute id="finalclass"/>
+					</attributes>
+				</reconciliation>
+			</properties>
+			<fields>
+				<field id="name" xsi:type="attributeString">
+					<sql>name</sql>
+					<is_null_allowed>false</is_null_allowed>
+				</field>
+				<field id="comment" xsi:type="AttributeText">
+					<sql>comment</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+				<field id="connectableci_id" xsi:type="AttributeExternalKey">
+					<sql>connectableci_id</sql>
+					<target_class>ConnectableCI</target_class>
+					<is_null_allowed>false</is_null_allowed>
+					<on_target_delete>DEL_AUTO</on_target_delete>
+				</field>
+				<field id="connectableci_name" xsi:type="AttributeExternalField">
+					<extkey_attcode>connectableci_id</extkey_attcode>
+					<target_attcode>name</target_attcode>
+				</field>
+			</fields>
+			<methods>
+			</methods>
+			<presentation>
+				<details>
+					<items>
+						<item id="name">
+							<rank>10</rank>
+						</item>
+						<item id="comment">
+							<rank>30</rank>
+						</item>
+						<item id="connectableci_id">
+							<rank>40</rank>
+						</item>
+					</items>
+				</details>
+				<default_search>
+					<items>
+						<item id="name">
+							<rank>10</rank>
+						</item>
+						<item id="connectableci_id">
+							<rank>40</rank>
+						</item>
+					</items>
+				</default_search>
+				<search>
+					<items>
+						<item id="name">
+							<rank>10</rank>
+						</item>
+						<item id="connectableci_id">
+							<rank>40</rank>
+						</item>
+					</items>
+				</search>
+				<list>
+					<items>
+						<item id="name">
+							<rank>10</rank>
+						</item>
+					</items>
+						<item id="connectableci_id">
+							<rank>40</rank>
+						</item>
+				</list>
+			</presentation>
+		</class>
+		<!-- This abstract class defines a Generic Communication Interface. -->
+		<class id="GenericCommInterface" _delta="define">
+			<parent>GenericCommLayer1Interface</parent>
+			<properties>
+				<category>bizmodel,searchable</category>
+				<abstract>true</abstract>
+				<key_type>autoincrement</key_type>
+				<db_table>genericcomminterface</db_table>
+				<db_key_field>id</db_key_field>
+				<db_final_class_field>finalclass</db_final_class_field>
+				<naming>
+					<attributes>
+						<attribute id="name"/>
+					</attributes>
+				</naming>
+				<display_template/>
+				<icon/>
+				<reconciliation>
+					<attributes>
+						<attribute id="name"/>
+						<attribute id="finalclass"/>
+					</attributes>
+				</reconciliation>
+			</properties>
+			<fields>
+				<field id="physicaladdress" xsi:type="attributeString">
+					<sql>physicaladdress</sql>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
+				<field id="commproto_id" xsi:type="AttributeExternalKey">
+					<sql>commproto_id</sql>
+					<target_class>GenericCommProtocol</target_class>
+					<is_null_allowed>false</is_null_allowed>
+					<on_target_delete>DEL_MANUAL</on_target_delete>
+				</field>
+				<field id="commproto_name" xsi:type="AttributeExternalField">
+					<extkey_attcode>commproto_id</extkey_attcode>
+					<target_attcode>name</target_attcode>
+				</field>
+				<field id="humanspeed_id" xsi:type="AttributeExternalKey">
+					<sql>humanspeed_id</sql>
+					<target_class>GenericCommSpeed</target_class>
+					<is_null_allowed>true</is_null_allowed>
+					<on_target_delete>DEL_MANUAL</on_target_delete>
+				</field>
+				<field id="humanspeed_speed" xsi:type="AttributeExternalField">
+					<extkey_attcode>humanspeed_id</extkey_attcode>
+					<target_attcode>humanspeed</target_attcode>
+				</field>
+				<field id="genericcommvirtinterface_list" xsi:type="AttributeLinkedSetIndirect">
+					<linked_class>lnkGenericCommInterfaceToGenericCommVirtInterface</linked_class>
+					<ext_key_to_me>genericcomminterface_id</ext_key_to_me>
+					<count_min>0</count_min>
+					<count_max>0</count_max>
+					<ext_key_to_remote>genericcommvirtinterface_id</ext_key_to_remote>
+					<duplicates/>
+				</field>
+			</fields>
+			<methods>
+				<method id="AfterInsert">
+					<static>false</static>
+					<access>protected</access>
+					<type>Overload-DBObject</type>
+					<code><![CDATA[	protected function AfterInsert()
+						{
+							GenericCommFunct::UpdateCIDependencies($this->Get('connectableci_id'));
+							parent::AfterInsert();
+						}]]>
+					</code>
+				</method>
+				<method id="AfterDelete">
+					<static>false</static>
+					<access>protected</access>
+					<type>Overload-DBObject</type>
+					<code><![CDATA[	protected function AfterDelete()
+						{
+							GenericCommFunct::UpdateCIDependencies($this->Get('connectableci_id'));
+							parent::AfterDelete();
+						}]]>
+					</code>
+				</method>
+			</methods>
+			<presentation>
+				<details>
+					<items>
+						<item id="name">
+							<rank>10</rank>
+						</item>
+						<item id="physicaladdress">
+							<rank>20</rank>
+						</item>
+						<item id="comment">
+							<rank>30</rank>
+						</item>
+						<item id="commproto_id">
+							<rank>50</rank>
+						</item>
+						<item id="humanspeed_id">
+							<rank>60</rank>
+						</item>
+						<item id="connectableci_id">
+							<rank>70</rank>
+						</item>
+						<item id="genericcommvirtinterface_list">
+							<rank>100</rank>
+						</item>
+					</items>
+				</details>
+				<default_search>
+					<items>
+						<item id="name">
+							<rank>10</rank>
+						</item>
+						<item id="physicaladdress">
+							<rank>20</rank>
+						</item>
+						<item id="commproto_id">
+							<rank>50</rank>
+						</item>
+						<item id="humanspeed_id">
+							<rank>60</rank>
+						</item>
+						<item id="connectableci_id">
+							<rank>70</rank>
+						</item>
+					</items>
+				</default_search>
+				<search>
+					<items>
+						<item id="name">
+							<rank>10</rank>
+						</item>
+						<item id="physicaladdress">
+							<rank>20</rank>
+						</item>
+						<item id="commproto_id">
+							<rank>50</rank>
+						</item>
+						<item id="humanspeed_id">
+							<rank>60</rank>
+						</item>
+						<item id="connectableci_id">
+							<rank>70</rank>
+						</item>
+					</items>
+				</search>
+				<list>
+					<items>
+						<item id="name">
+							<rank>10</rank>
+						</item>
+						<item id="physicaladdress">
+							<rank>20</rank>
+						</item>
+						<item id="commproto_id">
+							<rank>50</rank>
+						</item>
+						<item id="humanspeed_id">
+							<rank>60</rank>
+						</item>
+						<item id="connectableci_id">
+							<rank>70</rank>
+						</item>
+					</items>
+				</list>
+			</presentation>
+			<relations>
+				<relation id="impacts">
+					<neighbours>
+						<neighbour id="VirtInterface"> <!-- A key  that is the link with the neighbour_id in the Child AttributeRedundancySettings -->
+							<attribute>genericcommvirtinterface_list</attribute> <!-- local key (direct/indirect) to the childCI -->
+						</neighbour>
+					</neighbours>
+				</relation>
+			</relations>
+		</class>
+		<!-- This class defines the specific attributes of a Generic Physical Communication interface -->
+		<class id="GenericCommPhysInterface" _delta="define">
+			<parent>GenericCommInterface</parent>
+			<properties>
+				<category>bizmodel,searchable</category>
+				<abstract>false</abstract>
+				<key_type>autoincrement</key_type>
+				<db_table>genericcommphysinterface</db_table>
+				<db_key_field>id</db_key_field>
+				<db_final_class_field/>
+				<naming>
+					<attributes>
+						<attribute id="name"/>
+						<attribute id="connectableci_name"/>
+ 					</attributes>
+				</naming>
+				<display_template/>
+				<icon>images/phys-interface.png</icon>
+				<reconciliation>
+					<attributes>
+						<attribute id="name"/>
+						<attribute id="connectableci_id"/>
+						<attribute id="connectableci_name"/>
+ 					</attributes>
+				</reconciliation>
+				<obsolescence>
+					<condition>connectableci_id_obsolescence_flag</condition>
+				</obsolescence>
+			</properties>
+			<fields>
+				<field id="physcommtype_id" xsi:type="AttributeExternalKey">
+					<sql>physcommtype_id</sql>
+					<target_class>GenericPhysCommConnector</target_class>
+					<is_null_allowed>false</is_null_allowed>
+					<on_target_delete>DEL_MANUAL</on_target_delete>
+				</field>
+				<field id="physcommtype_name" xsi:type="AttributeExternalField">
+					<extkey_attcode>physcommtype_id</extkey_attcode>
+					<target_attcode>name</target_attcode>
+				</field>
+				<field id="connected_to_device_id" xsi:type="AttributeExternalKey">
+					<sql>connected_to_device_id</sql>
+					<is_null_allowed>true</is_null_allowed>
+					<target_class>ConnectableCI</target_class>
+					<on_target_delete>DEL_MANUAL</on_target_delete>
+				</field>
+				<field id="connected_to_device_name" xsi:type="AttributeExternalField">
+					<extkey_attcode>connected_to_device_id</extkey_attcode>
+					<target_attcode>name</target_attcode>
+				</field>
+				<field id="connected_to_id" xsi:type="AttributeExternalKey">
+					<sql>connected_to_id</sql>
+					<target_class>GenericCommPhysInterface</target_class>
+					<is_null_allowed>true</is_null_allowed>
+					<on_target_delete>DEL_MANUAL</on_target_delete>
+					<filter><![CDATA[SELECT GenericCommPhysInterface AS G WHERE G.connected_to_id = '' AND G.id != :this->id AND G.connectableci_id = :this->connected_to_device_id AND G.commproto_id = :this->commproto_id]]></filter>
+					<dependencies>
+						<attribute id="connected_to_device_id" />
+						<attribute id="commproto_id" />
+					</dependencies>
+				</field>
+				<field id="connected_to_name" xsi:type="AttributeExternalField">
+					<extkey_attcode>connected_to_id</extkey_attcode>
+					<target_attcode>name</target_attcode>
+				</field>
+				<!-- starting on version 0.6.0 connection impact down to port -->
+				<!-- not sure about the 'null allowed'... -->
+				<field id="connection_impact" xsi:type="AttributeEnum">
+					<values>
+						<value id="impacts">impacts</value>
+						<value id="depends">depends</value>
+					</values>
+					<sql>impact</sql>
+					<default_value>depends</default_value>
+					<is_null_allowed>true</is_null_allowed>
+					<display_style>list</display_style>
+				</field>
+			</fields>
+			<methods>
+				<method id="ConnectRemotePort">
+					<static>false</static>
+					<access>protected</access>
+					<type>Overload-cmdbAbstractObject</type>
+					<code><![CDATA[	protected function ConnectRemotePort()
+						{
+							// print "ConnectRemotePort begins<BR>";
+							if (!(empty($this->Get('connected_to_id'))))
+							{
+								// print "connected_to_name = ".$this->Get('connected_to_name')."<br>";
+								// try to get the port this port is connected to
+								$oDevice = MetaModel::GetObject('GenericCommPhysInterface', $this->Get('connected_to_id'));
+								if (is_object($oDevice) && (get_class($oDevice) == 'GenericCommPhysInterface'))
+								{
+									// print "Test Object OK<br>";
+									$sOQL = "SELECT GenericCommPhysInterface WHERE id = :device";
+									$oConnectionSet = new DBObjectSet(DBObjectSearch::FromOQL($sOQL),
+										array(),
+										array(
+											'device' => $this->Get('connected_to_id'),
+										)
+									);
+
+									// There should be one link - do it in a safe manner anyway
+									while ($oConnection = $oConnectionSet->Fetch())
+									{
+										// print "En cours sur : '".$oConnection->Get('name')."'<br>";
+										// if this port connection_impact is 'depends' then the other side is 'impacts'
+										$sImpact = $this->Get('connection_impact');
+										$sConnImpact = ($sImpact == 'impacts') ? 'depends' : 'impacts';
+										$oConnection->Set('connected_to_id', $this->GetKey());
+										$oConnection->Set('connected_to_device_id', $this->Get('connectableci_id'));
+										$oConnection->Set('connection_impact', $sConnImpact);
+										$oConnection->DBUpdate();
+									}
+								}
+							}
+							// print "ConnectRemotePort ends<BR>";
+						}
+					]]></code>
+				</method>
+				<method id="DisconnectRemotePort">
+					<static>false</static>
+					<access>protected</access>
+					<type>Overload-cmdbAbstractObject</type>
+					<code><![CDATA[	protected function DisconnectRemotePort()
+						{
+							// print "DisconnectRemotePort begins<BR>";
+							if (!(empty($this->GetOriginal('connected_to_id'))))
+							{
+								// print "was connected_to_name = ".$this->GetOriginal('connected_to_name')."<br>";
+								// try to get the port this port was connected to
+								// This one was hard to find : adding false in the next request allow a null answer
+								// witch is OK as we have to test after operations anyway
+								// see also $$mustBeFound value for MetaModel::GetObject
+								$oDevice = MetaModel::GetObject('GenericCommPhysInterface', $this->GetOriginal('connected_to_id'), false);
+								if (is_object($oDevice) && (get_class($oDevice) == 'GenericCommPhysInterface'))
+								{
+									// print "Test Object OK<br>";
+									$sOQL = "SELECT GenericCommPhysInterface WHERE connected_to_id = :device";
+									$oConnectionSet = new DBObjectSet(DBObjectSearch::FromOQL($sOQL),
+										array(),
+										array(
+											'device' => $this->GetKey(),
+										)
+									);
+
+									// There should be one link - do it in a safe manner anyway
+									while ($oConnection = $oConnectionSet->Fetch())
+									{
+										// print "En cours sur : '".$oConnection->Get('name')."'<br>";
+										// connection_impact is by default 'depends'
+										$oConnection->Set('connected_to_id', '');
+										$oConnection->Set('connected_to_device_id', '');
+										$oConnection->Set('connection_impact', 'depends');
+										$oConnection->DBUpdate();
+									}
+								}
+							}
+							// print "DisconnectRemotePort ends<BR>";
+						}
+					]]></code>
+				</method>
+				<method id="AfterInsert">
+					<static>false</static>
+					<access>protected</access>
+					<type>Overload-DBObject</type>
+					<code><![CDATA[	protected function AfterInsert()
+						{
+							$this->ConnectRemotePort();
+							parent::AfterInsert();
+				}]]></code>
+				</method>
+				<method id="OnUpdate">
+					<static>false</static>
+					<access>protected</access>
+					<type>Overload-DBObject</type>
+					<code><![CDATA[	protected function OnUpdate()
+						{
+							$this->DisconnectRemotePort();
+							$this->ConnectRemotePort();
+							parent::OnUpdate();
+				}]]></code>
+				</method>
+				<method id="AfterUpdate">
+					<static>false</static>
+					<access>protected</access>
+					<type>Overload-DBObject</type>
+					<code><![CDATA[	protected function AfterUpdate()
+						{
+							GenericCommFunct::UpdateCIDependencies($this->Get('connectableci_id'));
+							parent::AfterUpdate();
+				}]]></code>
+				</method>
+				<method id="OnDelete">
+					<static>false</static>
+					<access>protected</access>
+					<type>Overload-DBObject</type>
+					<code><![CDATA[	protected function OnDelete()
+						{
+							$this->DisconnectRemotePort();
+							parent::OnDelete();
+				}]]></code>
+				</method>
+				<!-- This method filters the search interface for virtual to generic connections -->
+				<method id="PrefillSearchForm">
+					<code><![CDATA[
+						public function PrefillSearchForm(&$aContextParam)
+						{
+							$sDebugFile=$_SERVER['CONTEXT_DOCUMENT_ROOT']."/debug/dd-".date("Y-m-d").".txt";
+							file_put_contents($sDebugFile, "in the GenericCommInterface Class\n");
+							//file_put_contents($sDebugFile, print_r($aContextParam, true), FILE_APPEND);
+							if($aContextParam['dest_class'] == 'GenericCommVirtInterface')
+							{
+								if(MetaModel::IsValidAttCode($aContextParam['dest_class'],'connectableci_id') && !empty($aContextParam['source_obj']->Get('connectableci_id')) &&
+								MetaModel::IsValidAttCode($aContextParam['dest_class'],'commproto_id') && !empty($aContextParam['source_obj']->Get('commproto_id')))
+								{
+									$aContextParam['filter']->ResetCondition();
+									$aContextParam['filter']->AddCondition('connectableci_id', $aContextParam['source_obj']->Get('connectableci_id'));
+									$aContextParam['filter']->AddCondition('commproto_id', $aContextParam['source_obj']->Get('commproto_id'));
+									$aContextParam['filter']->AddCondition('id',$aContextParam['source_obj']->GetKey(), '!=');
+								}
+							}
+						}]]>
+					</code>
+				</method>
+			</methods>
+			<presentation>
+				<details>
+					<items>
+						<item id="name">
+							<rank>10</rank>
+						</item>
+						<item id="physicaladdress">
+							<rank>20</rank>
+						</item>
+						<item id="comment">
+							<rank>30</rank>
+						</item>
+						<item id="physcommtype_id">
+							<rank>40</rank>
+						</item>
+						<item id="commproto_id">
+							<rank>50</rank>
+						</item>
+						<item id="humanspeed_id">
+							<rank>60</rank>
+						</item>
+						<item id="connected_to_device_id">
+							<rank>90</rank>
+						</item>
+						<item id="connected_to_id">
+							<rank>100</rank>
+						</item>
+						<item id="connection_impact">
+							<rank>110</rank>
+						</item>
+						<item id="genericcommvirtinterface_list">
+							<rank>120</rank>
+						</item>
+					</items>
+				</details>
+				<default_search>
+					<items>
+						<item id="name">
+							<rank>10</rank>
+						</item>
+						<item id="connectableci_id">
+							<rank>30</rank>
+						</item>
+						<item id="physcommtype_id">
+							<rank>40</rank>
+						</item>
+						<item id="commproto_id">
+							<rank>50</rank>
+						</item>
+						<item id="connected_to_device_id">
+							<rank>90</rank>
+						</item>
+						<item id="connected_to_id">
+							<rank>100</rank>
+						</item>
+					</items>
+				</default_search>
+				<search>
+					<items>
+						<item id="name">
+							<rank>10</rank>
+						</item>
+						<item id="physicaladdress">
+							<rank>20</rank>
+						</item>
+						<item id="connectableci_id">
+							<rank>30</rank>
+						</item>
+						<item id="physcommtype_id">
+							<rank>40</rank>
+						</item>
+						<item id="commproto_id">
+							<rank>50</rank>
+						</item>
+						<item id="connected_to_device_id">
+							<rank>90</rank>
+						</item>
+						<item id="connected_to_id">
+							<rank>100</rank>
+						</item>
+						<item id="connection_impact">
+							<rank>110</rank>
+						</item>
+					</items>
+				</search>
+				<list>
+					<items>
+						<item id="name">
+							<rank>10</rank>
+						</item>
+						<item id="physicaladdress">
+							<rank>20</rank>
+						</item>
+						<item id="connectableci_id">
+							<rank>30</rank>
+						</item>
+						<item id="physcommtype_id">
+							<rank>40</rank>
+						</item>
+						<item id="commproto_id">
+							<rank>50</rank>
+						</item>
+						<item id="humanspeed_id">
+							<rank>60</rank>
+						</item>
+						<item id="connected_to_device_id">
+							<rank>90</rank>
+						</item>
+						<item id="connected_to_id">
+							<rank>100</rank>
+						</item>
+						<item id="connection_impact">
+							<rank>110</rank>
+						</item>
+					</items>
+				</list>
+			</presentation>
+			<relations>
+				<relation id="impacts">
+					<neighbours>
+						<neighbour id="genericgommphysinterface">
+							<query_down>SELECT GenericCommPhysInterface WHERE connected_to_id = :this-&gt;id AND connection_impact = 'depends'</query_down>
+							<query_up>SELECT GenericCommPhysInterface WHERE connected_to_id = :this-&gt;id AND connection_impact = 'impacts'</query_up>
+						</neighbour>
+					</neighbours>
+				</relation>
+			</relations>
+		</class>
+		<!-- This class defines the specific attributes of a Generic Virtual Communication interface. It also adds the redudancy function -->
+		<class id="GenericCommVirtInterface" _delta="define">
+			<parent>GenericCommInterface</parent>
+			<properties>
+				<category>bizmodel,searchable</category>
+				<abstract>false</abstract>
+				<key_type>autoincrement</key_type>
+				<db_table>genericcommvirtinterface</db_table>
+				<db_key_field>id</db_key_field>
+				<db_final_class_field/>
+				<naming>
+					<attributes>
+						<attribute id="name"/>
+						<attribute id="connectableci_name"/>
+ 					</attributes>
+				</naming>
+				<display_template/>
+				<icon>images/virt-interface.png</icon>
+				<reconciliation>
+					<attributes>
+						<attribute id="name"/>
+						<attribute id="connectableci_id"/>
+						<attribute id="connectableci_name"/>
+ 					</attributes>
+				</reconciliation>
+				<obsolescence>
+					<condition>connectableci_id_obsolescence_flag</condition>
+				</obsolescence>
+			</properties>
+			<fields>
+				<field id="virtualcommredundancy_id" xsi:type="AttributeExternalKey">
+					<sql>virtualcommredundancy_id</sql>
+					<target_class>VirtualCommRedundancy</target_class>
+					<is_null_allowed>false</is_null_allowed>
+					<on_target_delete>DEL_MANUAL</on_target_delete>
+				</field>
+				<field id="virtualcommredundancy_name" xsi:type="AttributeExternalField">
+					<extkey_attcode>virtualcommredundancy_id</extkey_attcode>
+					<target_attcode>name</target_attcode>
+				</field>
+				<!--
+				Next field for the actual redundancy : see also virtualinterfaces in GenericCommPhysInterface
+				-->
+				<field id="virttogenericredundancy" xsi:type="AttributeRedundancySettings">
+					<sql>virttogenericredundancy</sql>
+					<relation_code>impacts</relation_code>
+					<from_class>GenericCommInterface</from_class>
+					<neighbour_id>VirtInterface</neighbour_id>
+					<enabled>true</enabled>
+					<enabled_mode>user</enabled_mode>
+					<min_up>1</min_up>
+					<min_up_type>count</min_up_type>
+					<min_up_mode>user</min_up_mode>
+				</field>
+				<field id="genericcomminterface_list" xsi:type="AttributeLinkedSetIndirect">
+					<linked_class>lnkGenericCommInterfaceToGenericCommVirtInterface</linked_class>
+					<ext_key_to_me>genericcommvirtinterface_id</ext_key_to_me>
+					<count_min>0</count_min>
+					<count_max>0</count_max>
+					<ext_key_to_remote>genericcomminterface_id</ext_key_to_remote>
+					<duplicates/>
+				</field>
+			</fields>
+			<methods>
+				<method id="PrefillSearchForm">
+					<code><![CDATA[
+						public function PrefillSearchForm(&$aContextParam)
+						{
+							$sDebugFile=$_SERVER['CONTEXT_DOCUMENT_ROOT']."/debug/dd-".date("Y-m-d").".txt";
+							//file_put_contents($sDebugFile, "in the GenericCommVirtInterface Class\n");
+							//file_put_contents($sDebugFile, print_r($aContextParam, true), FILE_APPEND);
+							if($aContextParam['dest_class'] == 'GenericCommInterface')
+							{
+								if(MetaModel::IsValidAttCode($aContextParam['dest_class'],'connectableci_id') && !empty($aContextParam['source_obj']->Get('connectableci_id')) &&
+								MetaModel::IsValidAttCode($aContextParam['dest_class'],'commproto_id') && !empty($aContextParam['source_obj']->Get('commproto_id')))
+								{
+									$aContextParam['filter']->ResetCondition();
+									$aContextParam['filter']->AddCondition('connectableci_id', $aContextParam['source_obj']->Get('connectableci_id'));
+									$aContextParam['filter']->AddCondition('commproto_id', $aContextParam['source_obj']->Get('commproto_id'));
+									$aContextParam['filter']->AddCondition('id',$aContextParam['source_obj']->GetKey(), '!=');
+									}
+							}
+						}]]>
+					</code>
+				</method>
+				<method id="AfterUpdate">
+					<static>false</static>
+					<access>protected</access>
+					<type>Overload-DBObject</type>
+					<code><![CDATA[	protected function AfterUpdate()
+						{
+							GenericCommFunct::UpdateCIDependencies($this->Get('connectableci_id'));
+							parent::AfterUpdate();
+				}]]></code>
+				</method>
+			</methods>
+			<presentation>
+				<details>
+					<items>
+						<item id="name">
+							<rank>10</rank>
+						</item>
+						<item id="physicaladdress">
+							<rank>20</rank>
+						</item>
+						<item id="comment">
+							<rank>30</rank>
+						</item>
+						<item id="virtualcommredundancy_id">
+							<rank>40</rank>
+						</item>
+						<item id="commproto_id">
+							<rank>50</rank>
+						</item>
+						<item id="humanspeed_id">
+							<rank>60</rank>
+						</item>
+						<item id="genericcomminterface_list">
+							<rank>100</rank>
+						</item>
+					</items>
+				</details>
+				<default_search>
+					<items>
+						<item id="name">
+							<rank>10</rank>
+						</item>
+						<item id="connectableci_id">
+							<rank>20</rank>
+						</item>
+						<item id="virtualcommredundancy_id">
+							<rank>40</rank>
+						</item>
+						<item id="commproto_id">
+							<rank>50</rank>
+						</item>
+					</items>
+				</default_search>
+				<search>
+					<items>
+						<item id="name">
+							<rank>10</rank>
+						</item>
+						<item id="physicaladdress">
+							<rank>20</rank>
+						</item>
+						<item id="connectableci_id">
+							<rank>30</rank>
+						</item>
+						<item id="virtualcommredundancy_id">
+							<rank>40</rank>
+						</item>
+						<item id="commproto_id">
+							<rank>50</rank>
+						</item>
+					</items>
+				</search>
+				<list>
+					<items>
+						<item id="name">
+							<rank>10</rank>
+						</item>
+						<item id="physicaladdress">
+							<rank>20</rank>
+						</item>
+						<item id="connectableci_id">
+							<rank>30</rank>
+						</item>
+						<item id="virtualcommredundancy_id">
+							<rank>40</rank>
+						</item>
+						<item id="commproto_id">
+							<rank>50</rank>
+						</item>
+						<item id="humanspeed_id">
+							<rank>60</rank>
+						</item>
+						<item id="virttogenericredundancy">
+							<rank>70</rank>
+						</item>
+					</items>
+				</list>
+			</presentation>
+		</class>
+		<!-- This class create a many to many link between generic Interface and virtual Generic Interface
+			The idea is that the Virtual interface always depend from the generic interface
+			Also a virtual interface is member of the same device that the generic interface(s) -->
+		<class id="lnkGenericCommInterfaceToGenericCommVirtInterface" _delta="define">
+			<parent>cmdbAbstractObject</parent>
+			<properties>
+				<is_link>1</is_link>
+				<category>bizmodel</category>
+				<abstract>false</abstract>
+				<key_type>autoincrement</key_type>
+				<db_table>lnkgenericcomminterfacetogenericcommvirtnterface</db_table>
+				<db_key_field>id</db_key_field>
+				<db_final_class_field/>
+				<naming>
+					<attributes>
+						<attribute id="genericcomminterface_id"/>
+						<attribute id="genericcommvirtinterface_id"/>
+					</attributes>
+				</naming>
+				<display_template/>
+				<icon/>
+				<reconciliation>
+					<attributes>
+						<attribute id="genericcomminterface_id"/>
+						<attribute id="genericcommvirtinterface_id"/>
+					</attributes>
+				</reconciliation>
+			</properties>
+			<fields>
+				<field id="genericcomminterface_id" xsi:type="AttributeExternalKey">
+					<sql>genericcomminterface_id</sql>
+					<target_class>GenericCommInterface</target_class>
+					<is_null_allowed>false</is_null_allowed>
+					<on_target_delete>DEL_AUTO</on_target_delete>
+				</field>
+				<field id="genericcommvirtinterface_id" xsi:type="AttributeExternalKey">
+					<sql>genericcommvirtinterface_id</sql>
+					<target_class>GenericCommVirtInterface</target_class>
+					<is_null_allowed>false</is_null_allowed>
+					<on_target_delete>DEL_AUTO</on_target_delete>
+				</field>
+			</fields>
+		<methods/>
+		<presentation>
+			<details>
+				<items>
+					<item id="genericcomminterface_id">
+						<rank>10</rank>
+					</item>
+					<item id="genericcommvirtinterface_id">
+						<rank>20</rank>
+					</item>
+				</items>
+			</details>
+			<search>
+				<items>
+					<item id="genericcomminterface_id">
+						<rank>10</rank>
+					</item>
+					<item id="genericcommvirtinterface_id">
+						<rank>20</rank>
+					</item>
+				</items>
+			</search>
+			<list>
+				<items>
+					<item id="genericcomminterface_id">
+						<rank>10</rank>
+					</item>
+					<item id="genericcommvirtinterface_id">
+						<rank>20</rank>
+					</item>
+				</items>
+			</list>
+		</presentation>
+		</class>
+		<!-- *** All the stuffs for the GenericCommDevices *** -->
+		<!-- This class implements a GenericCommDeviceType The idea is to put here the global function of the Device : SAN switch, WAN Router ... -->
+		<class id="GenericCommDeviceType" _delta="define">
+			<parent>Typology</parent>
+			<properties>
+				<category>bizmodel,searchable</category>
+				<abstract>false</abstract>
+				<key_type>autoincrement</key_type>
+				<db_table>genericcommdevicetype</db_table>
+				<db_key_field>id</db_key_field>
+				<db_final_class_field/>
+				<naming>
+					<attributes>
+						<attribute id="name"/>
+					</attributes>
+				</naming>
+				<display_template/>
+				<icon/>
+				<reconciliation>
+					<attributes>
+						<attribute id="name"/>
+					</attributes>
+				</reconciliation>
+			</properties>
+			<fields>
+				<field id="genericcommdevices_list" xsi:type="AttributeLinkedSet">
+					<linked_class>GenericCommDevice</linked_class>
+					<ext_key_to_me>genericcommdevicetype_id</ext_key_to_me>
+					<edit_mode>add_only</edit_mode>
+					<count_min>0</count_min>
+					<count_max>0</count_max>
+					<duplicates/>
+				</field>
+			</fields>
+			<methods/>
+			<presentation>
+				<details>
+					<items>
+						<item id="name">
+							<rank>10</rank>
+						</item>
+						<item id="genericcommdevices_list">
+							<rank>20</rank>
+						</item>
+					</items>
+				</details>
+				<search>
+					<items>
+						<item id="name">
+							<rank>10</rank>
+						</item>
+					</items>
+				</search>
+				<list>
+					<items>
+						<item id="name">
+							<rank>10</rank>
+						</item>
+					</items>
+				</list>
+			</presentation>
+		</class>
+		<!-- This class is a link between ConnectableCI and ConnectableCI. Basically, impactorci_id, dependantci_id. There as much linktable than redundancy pool -->
+		<!-- Set 0 -->
+		<class id="lnkConnectableCIToConnectableCI0" _delta="define">
+			<parent>cmdbAbstractObject</parent>
+			<properties>
+				<is_link>1</is_link>
+				<category>bizmodel</category>
+				<abstract>false</abstract>
+				<key_type>autoincrement</key_type>
+				<db_table>lnkconnectablecitoconnectableci0</db_table>
+				<db_key_field>id</db_key_field>
+				<db_final_class_field/>
+				<naming>
+					<attributes>
+						<attribute id="impactorci_id"/>
+						<attribute id="dependantci_id"/>
+					</attributes>
+				</naming>
+				<display_template/>
+				<icon/>
+				<reconciliation>
+					<attributes>
+						<attribute id="impactorci_id"/>
+						<attribute id="dependantci_id"/>
+					</attributes>
+				</reconciliation>
+			</properties>
+			<fields>
+				<field id="impactorci_id" xsi:type="AttributeExternalKey">
+					<sql>impactorci_id</sql>
+					<target_class>ConnectableCI</target_class>
+					<is_null_allowed>false</is_null_allowed>
+					<on_target_delete>DEL_AUTO</on_target_delete>
+					<allow_target_creation>true</allow_target_creation>
+				</field>
+				<field id="dependantci_id" xsi:type="AttributeExternalKey">
+					<sql>dependantci_id</sql>
+					<target_class>ConnectableCI</target_class>
+					<is_null_allowed>false</is_null_allowed>
+					<on_target_delete>DEL_AUTO</on_target_delete>
+					<allow_target_creation>true</allow_target_creation>
+				</field>
+			</fields>
+			<methods>
+			</methods>
+			<presentation>
+				<details>
+					<items>
+						<item id="impactorci_id">
+							<rank>10</rank>
+						</item>
+						<item id="dependantci_id">
+							<rank>30</rank>
+						</item>
+					</items>
+				</details>
+				<list>
+					<items>
+						<item id="impactorci_id">
+							<rank>10</rank>
+						</item>
+						<item id="dependantci_id">
+							<rank>30</rank>
+						</item>
+					</items>
+				</list>
+				<search>
+					<items>
+						<item id="impactorci_id">
+							<rank>10</rank>
+						</item>
+						<item id="dependantci_id">
+							<rank>30</rank>
+						</item>
+					</items>
+				</search>
+			</presentation>
+			<relations>
+			</relations>
+		</class>
+		<!-- Set 1 -->
+		<class id="lnkConnectableCIToConnectableCI1" _delta="define">
+			<parent>cmdbAbstractObject</parent>
+			<properties>
+				<is_link>1</is_link>
+				<category>bizmodel</category>
+				<abstract>false</abstract>
+				<key_type>autoincrement</key_type>
+				<db_table>lnkconnectablecitoconnectableci1</db_table>
+				<db_key_field>id</db_key_field>
+				<db_final_class_field/>
+				<naming>
+					<attributes>
+						<attribute id="impactorci_id"/>
+						<attribute id="dependantci_id"/>
+					</attributes>
+				</naming>
+				<display_template/>
+				<icon/>
+				<reconciliation>
+					<attributes>
+						<attribute id="impactorci_id"/>
+						<attribute id="dependantci_id"/>
+					</attributes>
+				</reconciliation>
+			</properties>
+			<fields>
+				<field id="impactorci_id" xsi:type="AttributeExternalKey">
+					<sql>impactorci_id</sql>
+					<target_class>ConnectableCI</target_class>
+					<is_null_allowed>false</is_null_allowed>
+					<on_target_delete>DEL_AUTO</on_target_delete>
+					<allow_target_creation>true</allow_target_creation>
+				</field>
+				<field id="dependantci_id" xsi:type="AttributeExternalKey">
+					<sql>dependantci_id</sql>
+					<target_class>ConnectableCI</target_class>
+					<is_null_allowed>false</is_null_allowed>
+					<on_target_delete>DEL_AUTO</on_target_delete>
+					<allow_target_creation>true</allow_target_creation>
+				</field>
+			</fields>
+			<methods>
+			</methods>
+			<presentation>
+				<details>
+					<items>
+						<item id="impactorci_id">
+							<rank>10</rank>
+						</item>
+						<item id="dependantci_id">
+							<rank>30</rank>
+						</item>
+					</items>
+				</details>
+				<list>
+					<items>
+						<item id="impactorci_id">
+							<rank>10</rank>
+						</item>
+						<item id="dependantci_id">
+							<rank>30</rank>
+						</item>
+					</items>
+				</list>
+				<search>
+					<items>
+						<item id="impactorci_id">
+							<rank>10</rank>
+						</item>
+						<item id="dependantci_id">
+							<rank>30</rank>
+						</item>
+					</items>
+				</search>
+			</presentation>
+			<relations>
+			</relations>
+		</class>
+		<!-- Set 2 -->
+		<class id="lnkConnectableCIToConnectableCI2" _delta="define">
+			<parent>cmdbAbstractObject</parent>
+			<properties>
+				<is_link>1</is_link>
+				<category>bizmodel</category>
+				<abstract>false</abstract>
+				<key_type>autoincrement</key_type>
+				<db_table>lnkconnectablecitoconnectableci2</db_table>
+				<db_key_field>id</db_key_field>
+				<db_final_class_field/>
+				<naming>
+					<attributes>
+						<attribute id="impactorci_id"/>
+						<attribute id="dependantci_id"/>
+					</attributes>
+				</naming>
+				<display_template/>
+				<icon/>
+				<reconciliation>
+					<attributes>
+						<attribute id="impactorci_id"/>
+						<attribute id="dependantci_id"/>
+					</attributes>
+				</reconciliation>
+			</properties>
+			<fields>
+				<field id="impactorci_id" xsi:type="AttributeExternalKey">
+					<sql>impactorci_id</sql>
+					<target_class>ConnectableCI</target_class>
+					<is_null_allowed>false</is_null_allowed>
+					<on_target_delete>DEL_AUTO</on_target_delete>
+					<allow_target_creation>true</allow_target_creation>
+				</field>
+				<field id="dependantci_id" xsi:type="AttributeExternalKey">
+					<sql>dependantci_id</sql>
+					<target_class>ConnectableCI</target_class>
+					<is_null_allowed>false</is_null_allowed>
+					<on_target_delete>DEL_AUTO</on_target_delete>
+					<allow_target_creation>true</allow_target_creation>
+				</field>
+			</fields>
+			<methods>
+			</methods>
+			<presentation>
+				<details>
+					<items>
+						<item id="impactorci_id">
+							<rank>10</rank>
+						</item>
+						<item id="dependantci_id">
+							<rank>30</rank>
+						</item>
+					</items>
+				</details>
+				<list>
+					<items>
+						<item id="impactorci_id">
+							<rank>10</rank>
+						</item>
+						<item id="dependantci_id">
+							<rank>30</rank>
+						</item>
+					</items>
+				</list>
+				<search>
+					<items>
+						<item id="impactorci_id">
+							<rank>10</rank>
+						</item>
+						<item id="dependantci_id">
+							<rank>30</rank>
+						</item>
+					</items>
+				</search>
+			</presentation>
+			<relations>
+			</relations>
+		</class>
+		<!-- Set 3 -->
+		<class id="lnkConnectableCIToConnectableCI3" _delta="define">
+			<parent>cmdbAbstractObject</parent>
+			<properties>
+				<is_link>1</is_link>
+				<category>bizmodel</category>
+				<abstract>false</abstract>
+				<key_type>autoincrement</key_type>
+				<db_table>lnkconnectablecitoconnectableci3</db_table>
+				<db_key_field>id</db_key_field>
+				<db_final_class_field/>
+				<naming>
+					<attributes>
+						<attribute id="impactorci_id"/>
+						<attribute id="dependantci_id"/>
+					</attributes>
+				</naming>
+				<display_template/>
+				<icon/>
+				<reconciliation>
+					<attributes>
+						<attribute id="impactorci_id"/>
+						<attribute id="dependantci_id"/>
+					</attributes>
+				</reconciliation>
+			</properties>
+			<fields>
+				<field id="impactorci_id" xsi:type="AttributeExternalKey">
+					<sql>impactorci_id</sql>
+					<target_class>ConnectableCI</target_class>
+					<is_null_allowed>false</is_null_allowed>
+					<on_target_delete>DEL_AUTO</on_target_delete>
+					<allow_target_creation>true</allow_target_creation>
+				</field>
+				<field id="dependantci_id" xsi:type="AttributeExternalKey">
+					<sql>dependantci_id</sql>
+					<target_class>ConnectableCI</target_class>
+					<is_null_allowed>false</is_null_allowed>
+					<on_target_delete>DEL_AUTO</on_target_delete>
+					<allow_target_creation>true</allow_target_creation>
+				</field>
+			</fields>
+			<methods>
+			</methods>
+			<presentation>
+				<details>
+					<items>
+						<item id="impactorci_id">
+							<rank>10</rank>
+						</item>
+						<item id="dependantci_id">
+							<rank>30</rank>
+						</item>
+					</items>
+				</details>
+				<list>
+					<items>
+						<item id="impactorci_id">
+							<rank>10</rank>
+						</item>
+						<item id="dependantci_id">
+							<rank>30</rank>
+						</item>
+					</items>
+				</list>
+				<search>
+					<items>
+						<item id="impactorci_id">
+							<rank>10</rank>
+						</item>
+						<item id="dependantci_id">
+							<rank>30</rank>
+						</item>
+					</items>
+				</search>
+			</presentation>
+			<relations>
+			</relations>
+		</class>
+		<!-- Set 4 -->
+		<class id="lnkConnectableCIToConnectableCI4" _delta="define">
+			<parent>cmdbAbstractObject</parent>
+			<properties>
+				<is_link>1</is_link>
+				<category>bizmodel</category>
+				<abstract>false</abstract>
+				<key_type>autoincrement</key_type>
+				<db_table>lnkconnectablecitoconnectableci4</db_table>
+				<db_key_field>id</db_key_field>
+				<db_final_class_field/>
+				<naming>
+					<attributes>
+						<attribute id="impactorci_id"/>
+						<attribute id="dependantci_id"/>
+					</attributes>
+				</naming>
+				<display_template/>
+				<icon/>
+				<reconciliation>
+					<attributes>
+						<attribute id="impactorci_id"/>
+						<attribute id="dependantci_id"/>
+					</attributes>
+				</reconciliation>
+			</properties>
+			<fields>
+				<field id="impactorci_id" xsi:type="AttributeExternalKey">
+					<sql>impactorci_id</sql>
+					<target_class>ConnectableCI</target_class>
+					<is_null_allowed>false</is_null_allowed>
+					<on_target_delete>DEL_AUTO</on_target_delete>
+					<allow_target_creation>true</allow_target_creation>
+				</field>
+				<field id="dependantci_id" xsi:type="AttributeExternalKey">
+					<sql>dependantci_id</sql>
+					<target_class>ConnectableCI</target_class>
+					<is_null_allowed>false</is_null_allowed>
+					<on_target_delete>DEL_AUTO</on_target_delete>
+					<allow_target_creation>true</allow_target_creation>
+				</field>
+			</fields>
+			<methods>
+			</methods>
+			<presentation>
+				<details>
+					<items>
+						<item id="impactorci_id">
+							<rank>10</rank>
+						</item>
+						<item id="dependantci_id">
+							<rank>30</rank>
+						</item>
+					</items>
+				</details>
+				<list>
+					<items>
+						<item id="impactorci_id">
+							<rank>10</rank>
+						</item>
+						<item id="dependantci_id">
+							<rank>30</rank>
+						</item>
+					</items>
+				</list>
+				<search>
+					<items>
+						<item id="impactorci_id">
+							<rank>10</rank>
+						</item>
+						<item id="dependantci_id">
+							<rank>30</rank>
+						</item>
+					</items>
+				</search>
+			</presentation>
+			<relations>
+			</relations>
+		</class>
+		<!-- Set 5 -->
+		<class id="lnkConnectableCIToConnectableCI5" _delta="define">
+			<parent>cmdbAbstractObject</parent>
+			<properties>
+				<is_link>1</is_link>
+				<category>bizmodel</category>
+				<abstract>false</abstract>
+				<key_type>autoincrement</key_type>
+				<db_table>lnkconnectablecitoconnectableci5</db_table>
+				<db_key_field>id</db_key_field>
+				<db_final_class_field/>
+				<naming>
+					<attributes>
+						<attribute id="impactorci_id"/>
+						<attribute id="dependantci_id"/>
+					</attributes>
+				</naming>
+				<display_template/>
+				<icon/>
+				<reconciliation>
+					<attributes>
+						<attribute id="impactorci_id"/>
+						<attribute id="dependantci_id"/>
+					</attributes>
+				</reconciliation>
+			</properties>
+			<fields>
+				<field id="impactorci_id" xsi:type="AttributeExternalKey">
+					<sql>impactorci_id</sql>
+					<target_class>ConnectableCI</target_class>
+					<is_null_allowed>false</is_null_allowed>
+					<on_target_delete>DEL_AUTO</on_target_delete>
+					<allow_target_creation>true</allow_target_creation>
+				</field>
+				<field id="dependantci_id" xsi:type="AttributeExternalKey">
+					<sql>dependantci_id</sql>
+					<target_class>ConnectableCI</target_class>
+					<is_null_allowed>false</is_null_allowed>
+					<on_target_delete>DEL_AUTO</on_target_delete>
+					<allow_target_creation>true</allow_target_creation>
+				</field>
+			</fields>
+			<methods>
+			</methods>
+			<presentation>
+				<details>
+					<items>
+						<item id="impactorci_id">
+							<rank>10</rank>
+						</item>
+						<item id="dependantci_id">
+							<rank>30</rank>
+						</item>
+					</items>
+				</details>
+				<list>
+					<items>
+						<item id="impactorci_id">
+							<rank>10</rank>
+						</item>
+						<item id="dependantci_id">
+							<rank>30</rank>
+						</item>
+					</items>
+				</list>
+				<search>
+					<items>
+						<item id="impactorci_id">
+							<rank>10</rank>
+						</item>
+						<item id="dependantci_id">
+							<rank>30</rank>
+						</item>
+					</items>
+				</search>
+			</presentation>
+			<relations>
+			</relations>
+		</class>
+		<!-- Set 6 -->
+		<class id="lnkConnectableCIToConnectableCI6" _delta="define">
+			<parent>cmdbAbstractObject</parent>
+			<properties>
+				<is_link>1</is_link>
+				<category>bizmodel</category>
+				<abstract>false</abstract>
+				<key_type>autoincrement</key_type>
+				<db_table>lnkconnectablecitoconnectableci6</db_table>
+				<db_key_field>id</db_key_field>
+				<db_final_class_field/>
+				<naming>
+					<attributes>
+						<attribute id="impactorci_id"/>
+						<attribute id="dependantci_id"/>
+					</attributes>
+				</naming>
+				<display_template/>
+				<icon/>
+				<reconciliation>
+					<attributes>
+						<attribute id="impactorci_id"/>
+						<attribute id="dependantci_id"/>
+					</attributes>
+				</reconciliation>
+			</properties>
+			<fields>
+				<field id="impactorci_id" xsi:type="AttributeExternalKey">
+					<sql>impactorci_id</sql>
+					<target_class>ConnectableCI</target_class>
+					<is_null_allowed>false</is_null_allowed>
+					<on_target_delete>DEL_AUTO</on_target_delete>
+					<allow_target_creation>true</allow_target_creation>
+				</field>
+				<field id="dependantci_id" xsi:type="AttributeExternalKey">
+					<sql>dependantci_id</sql>
+					<target_class>ConnectableCI</target_class>
+					<is_null_allowed>false</is_null_allowed>
+					<on_target_delete>DEL_AUTO</on_target_delete>
+					<allow_target_creation>true</allow_target_creation>
+				</field>
+			</fields>
+			<methods>
+			</methods>
+			<presentation>
+				<details>
+					<items>
+						<item id="impactorci_id">
+							<rank>10</rank>
+						</item>
+						<item id="dependantci_id">
+							<rank>30</rank>
+						</item>
+					</items>
+				</details>
+				<list>
+					<items>
+						<item id="impactorci_id">
+							<rank>10</rank>
+						</item>
+						<item id="dependantci_id">
+							<rank>30</rank>
+						</item>
+					</items>
+				</list>
+				<search>
+					<items>
+						<item id="impactorci_id">
+							<rank>10</rank>
+						</item>
+						<item id="dependantci_id">
+							<rank>30</rank>
+						</item>
+					</items>
+				</search>
+			</presentation>
+			<relations>
+			</relations>
+		</class>
+		<!-- Set 7 -->
+		<class id="lnkConnectableCIToConnectableCI7" _delta="define">
+			<parent>cmdbAbstractObject</parent>
+			<properties>
+				<is_link>1</is_link>
+				<category>bizmodel</category>
+				<abstract>false</abstract>
+				<key_type>autoincrement</key_type>
+				<db_table>lnkconnectablecitoconnectableci7</db_table>
+				<db_key_field>id</db_key_field>
+				<db_final_class_field/>
+				<naming>
+					<attributes>
+						<attribute id="impactorci_id"/>
+						<attribute id="dependantci_id"/>
+					</attributes>
+				</naming>
+				<display_template/>
+				<icon/>
+				<reconciliation>
+					<attributes>
+						<attribute id="impactorci_id"/>
+						<attribute id="dependantci_id"/>
+					</attributes>
+				</reconciliation>
+			</properties>
+			<fields>
+				<field id="impactorci_id" xsi:type="AttributeExternalKey">
+					<sql>impactorci_id</sql>
+					<target_class>ConnectableCI</target_class>
+					<is_null_allowed>false</is_null_allowed>
+					<on_target_delete>DEL_AUTO</on_target_delete>
+					<allow_target_creation>true</allow_target_creation>
+				</field>
+				<field id="dependantci_id" xsi:type="AttributeExternalKey">
+					<sql>dependantci_id</sql>
+					<target_class>ConnectableCI</target_class>
+					<is_null_allowed>false</is_null_allowed>
+					<on_target_delete>DEL_AUTO</on_target_delete>
+					<allow_target_creation>true</allow_target_creation>
+				</field>
+			</fields>
+			<methods>
+			</methods>
+			<presentation>
+				<details>
+					<items>
+						<item id="impactorci_id">
+							<rank>10</rank>
+						</item>
+						<item id="dependantci_id">
+							<rank>30</rank>
+						</item>
+					</items>
+				</details>
+				<list>
+					<items>
+						<item id="impactorci_id">
+							<rank>10</rank>
+						</item>
+						<item id="dependantci_id">
+							<rank>30</rank>
+						</item>
+					</items>
+				</list>
+				<search>
+					<items>
+						<item id="impactorci_id">
+							<rank>10</rank>
+						</item>
+						<item id="dependantci_id">
+							<rank>30</rank>
+						</item>
+					</items>
+				</search>
+			</presentation>
+			<relations>
+			</relations>
+		</class>
+		<!-- Set 8 -->
+		<class id="lnkConnectableCIToConnectableCI8" _delta="define">
+			<parent>cmdbAbstractObject</parent>
+			<properties>
+				<is_link>1</is_link>
+				<category>bizmodel</category>
+				<abstract>false</abstract>
+				<key_type>autoincrement</key_type>
+				<db_table>lnkconnectablecitoconnectableci8</db_table>
+				<db_key_field>id</db_key_field>
+				<db_final_class_field/>
+				<naming>
+					<attributes>
+						<attribute id="impactorci_id"/>
+						<attribute id="dependantci_id"/>
+					</attributes>
+				</naming>
+				<display_template/>
+				<icon/>
+				<reconciliation>
+					<attributes>
+						<attribute id="impactorci_id"/>
+						<attribute id="dependantci_id"/>
+					</attributes>
+				</reconciliation>
+			</properties>
+			<fields>
+				<field id="impactorci_id" xsi:type="AttributeExternalKey">
+					<sql>impactorci_id</sql>
+					<target_class>ConnectableCI</target_class>
+					<is_null_allowed>false</is_null_allowed>
+					<on_target_delete>DEL_AUTO</on_target_delete>
+					<allow_target_creation>true</allow_target_creation>
+				</field>
+				<field id="dependantci_id" xsi:type="AttributeExternalKey">
+					<sql>dependantci_id</sql>
+					<target_class>ConnectableCI</target_class>
+					<is_null_allowed>false</is_null_allowed>
+					<on_target_delete>DEL_AUTO</on_target_delete>
+					<allow_target_creation>true</allow_target_creation>
+				</field>
+			</fields>
+			<methods>
+			</methods>
+			<presentation>
+				<details>
+					<items>
+						<item id="impactorci_id">
+							<rank>10</rank>
+						</item>
+						<item id="dependantci_id">
+							<rank>30</rank>
+						</item>
+					</items>
+				</details>
+				<list>
+					<items>
+						<item id="impactorci_id">
+							<rank>10</rank>
+						</item>
+						<item id="dependantci_id">
+							<rank>30</rank>
+						</item>
+					</items>
+				</list>
+				<search>
+					<items>
+						<item id="impactorci_id">
+							<rank>10</rank>
+						</item>
+						<item id="dependantci_id">
+							<rank>30</rank>
+						</item>
+					</items>
+				</search>
+			</presentation>
+			<relations>
+			</relations>
+		</class>
+		<!-- Set 9 -->
+		<class id="lnkConnectableCIToConnectableCI9" _delta="define">
+			<parent>cmdbAbstractObject</parent>
+			<properties>
+				<is_link>1</is_link>
+				<category>bizmodel</category>
+				<abstract>false</abstract>
+				<key_type>autoincrement</key_type>
+				<db_table>lnkconnectablecitoconnectableci9</db_table>
+				<db_key_field>id</db_key_field>
+				<db_final_class_field/>
+				<naming>
+					<attributes>
+						<attribute id="impactorci_id"/>
+						<attribute id="dependantci_id"/>
+					</attributes>
+				</naming>
+				<display_template/>
+				<icon/>
+				<reconciliation>
+					<attributes>
+						<attribute id="impactorci_id"/>
+						<attribute id="dependantci_id"/>
+					</attributes>
+				</reconciliation>
+			</properties>
+			<fields>
+				<field id="impactorci_id" xsi:type="AttributeExternalKey">
+					<sql>impactorci_id</sql>
+					<target_class>ConnectableCI</target_class>
+					<is_null_allowed>false</is_null_allowed>
+					<on_target_delete>DEL_AUTO</on_target_delete>
+					<allow_target_creation>true</allow_target_creation>
+				</field>
+				<field id="dependantci_id" xsi:type="AttributeExternalKey">
+					<sql>dependantci_id</sql>
+					<target_class>ConnectableCI</target_class>
+					<is_null_allowed>false</is_null_allowed>
+					<on_target_delete>DEL_AUTO</on_target_delete>
+					<allow_target_creation>true</allow_target_creation>
+				</field>
+			</fields>
+			<methods>
+			</methods>
+			<presentation>
+				<details>
+					<items>
+						<item id="impactorci_id">
+							<rank>10</rank>
+						</item>
+						<item id="dependantci_id">
+							<rank>30</rank>
+						</item>
+					</items>
+				</details>
+				<list>
+					<items>
+						<item id="impactorci_id">
+							<rank>10</rank>
+						</item>
+						<item id="dependantci_id">
+							<rank>30</rank>
+						</item>
+					</items>
+				</list>
+				<search>
+					<items>
+						<item id="impactorci_id">
+							<rank>10</rank>
+						</item>
+						<item id="dependantci_id">
+							<rank>30</rank>
+						</item>
+					</items>
+				</search>
+			</presentation>
+			<relations>
+			</relations>
+		</class>
+		<!-- This class defines a Generic Network Connection device (instead of a Network Device, a SAN Device...) -->
+		<class id="GenericCommDevice" _delta="define">
+			<parent>DatacenterDevice</parent>
+			<properties>
+				<category>bizmodel,searchable</category>
+				<abstract>false</abstract>
+				<key_type>autoincrement</key_type>
+				<db_table>genericcommdevice</db_table>
+				<db_key_field>id</db_key_field>
+				<db_final_class_field/>
+				<naming>
+					<attributes>
+						<attribute id="name"/>
+					</attributes>
+				</naming>
+				<display_template/>
+				<icon>images/commdevice.png</icon>
+				<reconciliation>
+					<attributes>
+						<attribute id="name"/>
+						<attribute id="org_id"/>
+						<attribute id="organization_name"/>
+					</attributes>
+				</reconciliation>
+			</properties>
+			<fields>
+				<field id="genericcommdevicetype_id" xsi:type="AttributeExternalKey">
+					<sql>genericcommdevicetype_id</sql>
+					<target_class>GenericCommDeviceType</target_class>
+					<is_null_allowed>false</is_null_allowed>
+					<on_target_delete>DEL_MANUAL</on_target_delete>
+				</field>
+				<field id="genericcommdevicetype_name" xsi:type="AttributeExternalField">
+					<extkey_attcode>genericcommdevicetype_id</extkey_attcode>
+					<target_attcode>name</target_attcode>
+				</field>
+				<field id="iosversion_id" xsi:type="AttributeExternalKey">
+					<sql>iosversion_id</sql>
+					<target_class>IOSVersion</target_class>
+					<is_null_allowed>true</is_null_allowed>
+					<on_target_delete>DEL_MANUAL</on_target_delete>
+				</field>
+				<field id="iosversion_name" xsi:type="AttributeExternalField">
+					<extkey_attcode>iosversion_id</extkey_attcode>
+					<target_attcode>name</target_attcode>
+				</field>
+			</fields>
+			<presentation>
+				<details>
+					<items>
+						<item id="contacts_list">
+							<rank>10</rank>
+						</item>
+						<item id="documents_list">
+							<rank>20</rank>
+						</item>
+						<item id="applicationsolution_list">
+							<rank>35</rank>
+						</item>
+						<item id="genericcommphysinterface_list">
+							<rank>40</rank>
+						</item>
+						<item id="genericcommvirtinterface_list">
+							<rank>50</rank>
+						</item>
+						<item id="providercontracts_list">
+							<rank>70</rank>
+						</item>
+						<item id="services_list">
+							<rank>80</rank>
+						</item>
+						<item id="col:col1">
+							<rank>90</rank>
+							<items>
+								<item id="fieldset:Server:baseinfo">
+									<rank>10</rank>
+									<items>
+										<item id="name">
+											<rank>10</rank>
+										</item>
+										<item id="org_id">
+											<rank>20</rank>
+										</item>
+										<item id="status">
+											<rank>30</rank>
+										</item>
+										<item id="business_criticity">
+											<rank>40</rank>
+										</item>
+										<item id="location_id">
+											<rank>50</rank>
+										</item>
+										<item id="rack_id">
+											<rank>60</rank>
+										</item>
+										<item id="enclosure_id">
+											<rank>70</rank>
+										</item>
+										<!-- depends on molkobains datacenter view 
+										<item id="position_v">
+											<rank>72</rank>
+										</item>
+										-->
+										<item id="nb_u">
+											<rank>73</rank>
+										</item>
+									</items>
+								</item>
+								<item id="fieldset:Server:moreinfo">
+									<rank>20</rank>
+									<items>
+										<item id="genericcommdevicetype_id">
+											<rank>10</rank>
+										</item>
+										<item id="brand_id">
+											<rank>20</rank>
+										</item>
+										<item id="model_id">
+											<rank>30</rank>
+										</item>
+										<item id="iosversion_id">
+											<rank>40</rank>
+										</item>
+										<item id="managementip">
+											<rank>45</rank>
+										</item>
+										<item id="serialnumber">
+											<rank>70</rank>
+										</item>
+										<item id="asset_number">
+											<rank>80</rank>
+										</item>
+									</items>
+								</item>
+							</items>
+						</item>
+						<item id="col:col2">
+							<rank>100</rank>
+							<items>
+								<item id="fieldset:Server:Date">
+									<rank>10</rank>
+									<items>
+										<item id="move2production">
+											<rank>10</rank>
+										</item>
+										<item id="purchase_date">
+											<rank>20</rank>
+										</item>
+										<item id="end_of_warranty">
+											<rank>30</rank>
+										</item>
+									</items>
+								</item>
+								<item id="fieldset:Server:power">
+									<rank>20</rank>
+									<items>
+										<item id="powerA_id">
+											<rank>10</rank>
+										</item>
+										<item id="powerB_id">
+											<rank>20</rank>
+										</item>
+										<item id="redundancy">
+											<rank>30</rank>
+										</item>
+									</items>
+								</item>
+								<item id="fieldset:Server:otherinfo">
+									<rank>30</rank>
+									<items>
+										<item id="description">
+											<rank>10</rank>
+										</item>
+									</items>
+								</item>
+							</items>
+						</item>
+					</items>
+				</details>
+				<search>
+					<items>
+						<item id="name">
+							<rank>10</rank>
+						</item>
+						<item id="org_id">
+							<rank>20</rank>
+						</item>
+						<item id="status">
+							<rank>30</rank>
+						</item>
+						<item id="business_criticity">
+							<rank>40</rank>
+						</item>
+						<item id="location_id">
+							<rank>50</rank>
+						</item>
+						<item id="managementip">
+							<rank>55</rank>
+						</item>
+						<item id="brand_id">
+							<rank>60</rank>
+						</item>
+						<item id="model_id">
+							<rank>70</rank>
+						</item>
+						<item id="serialnumber">
+							<rank>80</rank>
+						</item>
+						<item id="asset_number">
+							<rank>90</rank>
+						</item>
+						<item id="powerA_id">
+							<rank>100</rank>
+						</item>
+						<item id="powerB_id">
+							<rank>110</rank>
+						</item>
+						<item id="move2production">
+							<rank>120</rank>
+						</item>
+						<item id="purchase_date">
+							<rank>130</rank>
+						</item>
+						<item id="end_of_warranty">
+							<rank>140</rank>
+						</item>
+					</items>
+				</search>
+				<list>
+					<items>
+						<item id="org_id">
+							<rank>10</rank>
+						</item>
+						<item id="status">
+							<rank>20</rank>
+						</item>
+						<item id="business_criticity">
+							<rank>30</rank>
+						</item>
+						<item id="location_id">
+							<rank>40</rank>
+						</item>
+						<item id="brand_id">
+							<rank>50</rank>
+						</item>
+						<item id="model_id">
+							<rank>60</rank>
+						</item>
+						<item id="serialnumber">
+							<rank>70</rank>
+						</item>
+						<!-- depends on Molkobains datacenter view
+						<item id="position_v">
+							<rank>155</rank>
+						</item>
+						-->
+						<item id="nb_u">
+							<rank>160</rank>
+						</item>
+					</items>
+				</list>
+			</presentation>
+			<methods>
+			</methods>
+			<relations>
+			</relations>
+		</class>
+		<!-- The next modifications are here to extends existing classes -->
+		<class id="ConnectableCI" _delta="must_exist">
+			<fields>
+				<field id="genericcommphysinterface_list" xsi:type="AttributeLinkedSet" _delta="define">
+					<linked_class>GenericCommPhysInterface</linked_class>
+					<ext_key_to_me>connectableci_id</ext_key_to_me>
+					<edit_mode>in_place</edit_mode>
+					<tracking_level>all</tracking_level>
+					<count_min>0</count_min>
+					<count_max>0</count_max>
+				</field>
+				<field id="genericcommvirtinterface_list" xsi:type="AttributeLinkedSet" _delta="define">
+					<linked_class>GenericCommVirtInterface</linked_class>
+					<ext_key_to_me>connectableci_id</ext_key_to_me>
+					<edit_mode>in_place</edit_mode>
+					<tracking_level>all</tracking_level>
+					<count_min>0</count_min>
+					<count_max>0</count_max>
+				</field>
+				<!-- add a bunch of redundancy fields from ConnectableCI to ConnectableCI
+				Each redundancy field is made of a ConnectableCI list and a redundancy field
+				As this is a n:m relation, there also a much lnk table (or one by set ?)
+				There is also a relation for each set.
+				I plan to put 10 set (should be more than enough) numbered 0 to 9
+				In the end, these fields should be filled by code, so no view in presentation -->
+				<!-- Set 0 -->
+				<field id="dependantgencommci0_list" xsi:type="AttributeLinkedSetIndirect" _delta="define">
+					<linked_class>lnkConnectableCIToConnectableCI0</linked_class>
+					<ext_key_to_me>impactorci_id</ext_key_to_me>
+					<count_min>0</count_min>
+					<count_max>0</count_max>
+					<ext_key_to_remote>dependantci_id</ext_key_to_remote>
+					<duplicates/>
+				</field>
+				<field id="impactorgencommci0_list" xsi:type="AttributeLinkedSetIndirect" _delta="define">
+					<linked_class>lnkConnectableCIToConnectableCI0</linked_class>
+					<ext_key_to_me>dependantci_id</ext_key_to_me>
+					<count_min>0</count_min>
+					<count_max>0</count_max>
+					<ext_key_to_remote>impactorci_id</ext_key_to_remote>
+					<duplicates/>
+				</field>
+				<!-- the first 'redundancy is disabled, as this set is dedicated to non redundant connections -->
+				<field id="GenCommRedundancy0" xsi:type="AttributeRedundancySettings" _delta="define">
+					<sql>gencommredundancy0</sql>
+					<relation_code>impacts</relation_code>
+					<from_class>ConnectableCI</from_class>
+					<neighbour_id>gencommredundancy0</neighbour_id>
+					<enabled>false</enabled>
+					<enabled_mode>fixed</enabled_mode>
+					<min_up>1</min_up>
+					<min_up_type>count</min_up_type>
+					<min_up_mode>fixed</min_up_mode>
+				</field>
+				<!-- Set 1 -->
+				<field id="dependantgencommci1_list" xsi:type="AttributeLinkedSetIndirect" _delta="define">
+					<linked_class>lnkConnectableCIToConnectableCI1</linked_class>
+					<ext_key_to_me>impactorci_id</ext_key_to_me>
+					<count_min>0</count_min>
+					<count_max>0</count_max>
+					<ext_key_to_remote>dependantci_id</ext_key_to_remote>
+					<duplicates/>
+				</field>
+				<field id="impactorgencommci1_list" xsi:type="AttributeLinkedSetIndirect" _delta="define">
+					<linked_class>lnkConnectableCIToConnectableCI1</linked_class>
+					<ext_key_to_me>dependantci_id</ext_key_to_me>
+					<count_min>0</count_min>
+					<count_max>0</count_max>
+					<ext_key_to_remote>impactorci_id</ext_key_to_remote>
+					<duplicates/>
+				</field>
+				<field id="GenCommRedundancy1" xsi:type="AttributeRedundancySettings" _delta="define">
+					<sql>gencommredundancy1</sql>
+					<relation_code>impacts</relation_code>
+					<from_class>ConnectableCI</from_class>
+					<neighbour_id>gencommredundancy1</neighbour_id>
+					<enabled>true</enabled>
+					<enabled_mode>user</enabled_mode>
+					<min_up>1</min_up>
+					<min_up_type>count</min_up_type>
+					<min_up_mode>user</min_up_mode>
+				</field>
+				<!-- Set 2 -->
+				<field id="dependantgencommci2_list" xsi:type="AttributeLinkedSetIndirect" _delta="define">
+					<linked_class>lnkConnectableCIToConnectableCI2</linked_class>
+					<ext_key_to_me>impactorci_id</ext_key_to_me>
+					<count_min>0</count_min>
+					<count_max>0</count_max>
+					<ext_key_to_remote>dependantci_id</ext_key_to_remote>
+					<duplicates/>
+				</field>
+				<field id="impactorgencommci2_list" xsi:type="AttributeLinkedSetIndirect" _delta="define">
+					<linked_class>lnkConnectableCIToConnectableCI2</linked_class>
+					<ext_key_to_me>dependantci_id</ext_key_to_me>
+					<count_min>0</count_min>
+					<count_max>0</count_max>
+					<ext_key_to_remote>impactorci_id</ext_key_to_remote>
+					<duplicates/>
+				</field>
+				<field id="GenCommRedundancy2" xsi:type="AttributeRedundancySettings" _delta="define">
+					<sql>gencommredundancy2</sql>
+					<relation_code>impacts</relation_code>
+					<from_class>ConnectableCI</from_class>
+					<neighbour_id>gencommredundancy2</neighbour_id>
+					<enabled>true</enabled>
+					<enabled_mode>user</enabled_mode>
+					<min_up>1</min_up>
+					<min_up_type>count</min_up_type>
+					<min_up_mode>user</min_up_mode>
+				</field>
+				<!-- Set 3 -->
+				<field id="dependantgencommci3_list" xsi:type="AttributeLinkedSetIndirect" _delta="define">
+					<linked_class>lnkConnectableCIToConnectableCI3</linked_class>
+					<ext_key_to_me>impactorci_id</ext_key_to_me>
+					<count_min>0</count_min>
+					<count_max>0</count_max>
+					<ext_key_to_remote>dependantci_id</ext_key_to_remote>
+					<duplicates/>
+				</field>
+				<field id="impactorgencommci3_list" xsi:type="AttributeLinkedSetIndirect" _delta="define">
+					<linked_class>lnkConnectableCIToConnectableCI3</linked_class>
+					<ext_key_to_me>dependantci_id</ext_key_to_me>
+					<count_min>0</count_min>
+					<count_max>0</count_max>
+					<ext_key_to_remote>impactorci_id</ext_key_to_remote>
+					<duplicates/>
+				</field>
+				<field id="GenCommRedundancy3" xsi:type="AttributeRedundancySettings" _delta="define">
+					<sql>gencommredundancy3</sql>
+					<relation_code>impacts</relation_code>
+					<from_class>ConnectableCI</from_class>
+					<neighbour_id>gencommredundancy3</neighbour_id>
+					<enabled>true</enabled>
+					<enabled_mode>user</enabled_mode>
+					<min_up>1</min_up>
+					<min_up_type>count</min_up_type>
+					<min_up_mode>user</min_up_mode>
+				</field>
+				<!-- Set 4 -->
+				<field id="dependantgencommci4_list" xsi:type="AttributeLinkedSetIndirect" _delta="define">
+					<linked_class>lnkConnectableCIToConnectableCI4</linked_class>
+					<ext_key_to_me>impactorci_id</ext_key_to_me>
+					<count_min>0</count_min>
+					<count_max>0</count_max>
+					<ext_key_to_remote>dependantci_id</ext_key_to_remote>
+					<duplicates/>
+				</field>
+				<field id="impactorgencommci4_list" xsi:type="AttributeLinkedSetIndirect" _delta="define">
+					<linked_class>lnkConnectableCIToConnectableCI4</linked_class>
+					<ext_key_to_me>dependantci_id</ext_key_to_me>
+					<count_min>0</count_min>
+					<count_max>0</count_max>
+					<ext_key_to_remote>impactorci_id</ext_key_to_remote>
+					<duplicates/>
+				</field>
+				<field id="GenCommRedundancy4" xsi:type="AttributeRedundancySettings" _delta="define">
+					<sql>gencommredundancy4</sql>
+					<relation_code>impacts</relation_code>
+					<from_class>ConnectableCI</from_class>
+					<neighbour_id>gencommredundancy4</neighbour_id>
+					<enabled>true</enabled>
+					<enabled_mode>user</enabled_mode>
+					<min_up>1</min_up>
+					<min_up_type>count</min_up_type>
+					<min_up_mode>user</min_up_mode>
+				</field>
+				<!-- Set 5 -->
+				<field id="dependantgencommci5_list" xsi:type="AttributeLinkedSetIndirect" _delta="define">
+					<linked_class>lnkConnectableCIToConnectableCI5</linked_class>
+					<ext_key_to_me>impactorci_id</ext_key_to_me>
+					<count_min>0</count_min>
+					<count_max>0</count_max>
+					<ext_key_to_remote>dependantci_id</ext_key_to_remote>
+					<duplicates/>
+				</field>
+				<field id="impactorgencommci5_list" xsi:type="AttributeLinkedSetIndirect" _delta="define">
+					<linked_class>lnkConnectableCIToConnectableCI5</linked_class>
+					<ext_key_to_me>dependantci_id</ext_key_to_me>
+					<count_min>0</count_min>
+					<count_max>0</count_max>
+					<ext_key_to_remote>impactorci_id</ext_key_to_remote>
+					<duplicates/>
+				</field>
+				<field id="GenCommRedundancy5" xsi:type="AttributeRedundancySettings" _delta="define">
+					<sql>gencommredundancy5</sql>
+					<relation_code>impacts</relation_code>
+					<from_class>ConnectableCI</from_class>
+					<neighbour_id>gencommredundancy5</neighbour_id>
+					<enabled>true</enabled>
+					<enabled_mode>user</enabled_mode>
+					<min_up>1</min_up>
+					<min_up_type>count</min_up_type>
+					<min_up_mode>user</min_up_mode>
+				</field>
+				<!-- Set 6 -->
+				<field id="dependantgencommci6_list" xsi:type="AttributeLinkedSetIndirect" _delta="define">
+					<linked_class>lnkConnectableCIToConnectableCI6</linked_class>
+					<ext_key_to_me>impactorci_id</ext_key_to_me>
+					<count_min>0</count_min>
+					<count_max>0</count_max>
+					<ext_key_to_remote>dependantci_id</ext_key_to_remote>
+					<duplicates/>
+				</field>
+				<field id="impactorgencommci6_list" xsi:type="AttributeLinkedSetIndirect" _delta="define">
+					<linked_class>lnkConnectableCIToConnectableCI6</linked_class>
+					<ext_key_to_me>dependantci_id</ext_key_to_me>
+					<count_min>0</count_min>
+					<count_max>0</count_max>
+					<ext_key_to_remote>impactorci_id</ext_key_to_remote>
+					<duplicates/>
+				</field>
+				<field id="GenCommRedundancy6" xsi:type="AttributeRedundancySettings" _delta="define">
+					<sql>gencommredundancy6</sql>
+					<relation_code>impacts</relation_code>
+					<from_class>ConnectableCI</from_class>
+					<neighbour_id>gencommredundancy6</neighbour_id>
+					<enabled>true</enabled>
+					<enabled_mode>user</enabled_mode>
+					<min_up>1</min_up>
+					<min_up_type>count</min_up_type>
+					<min_up_mode>user</min_up_mode>
+				</field>
+				<!-- Set 7 -->
+				<field id="dependantgencommci7_list" xsi:type="AttributeLinkedSetIndirect" _delta="define">
+					<linked_class>lnkConnectableCIToConnectableCI7</linked_class>
+					<ext_key_to_me>impactorci_id</ext_key_to_me>
+					<count_min>0</count_min>
+					<count_max>0</count_max>
+					<ext_key_to_remote>dependantci_id</ext_key_to_remote>
+					<duplicates/>
+				</field>
+				<field id="impactorgencommci7_list" xsi:type="AttributeLinkedSetIndirect" _delta="define">
+					<linked_class>lnkConnectableCIToConnectableCI7</linked_class>
+					<ext_key_to_me>dependantci_id</ext_key_to_me>
+					<count_min>0</count_min>
+					<count_max>0</count_max>
+					<ext_key_to_remote>impactorci_id</ext_key_to_remote>
+					<duplicates/>
+				</field>
+				<field id="GenCommRedundancy7" xsi:type="AttributeRedundancySettings" _delta="define">
+					<sql>gencommredundancy7</sql>
+					<relation_code>impacts</relation_code>
+					<from_class>ConnectableCI</from_class>
+					<neighbour_id>gencommredundancy7</neighbour_id>
+					<enabled>true</enabled>
+					<enabled_mode>user</enabled_mode>
+					<min_up>1</min_up>
+					<min_up_type>count</min_up_type>
+					<min_up_mode>user</min_up_mode>
+				</field>
+				<!-- Set 8 -->
+				<field id="dependantgencommci8_list" xsi:type="AttributeLinkedSetIndirect" _delta="define">
+					<linked_class>lnkConnectableCIToConnectableCI8</linked_class>
+					<ext_key_to_me>impactorci_id</ext_key_to_me>
+					<count_min>0</count_min>
+					<count_max>0</count_max>
+					<ext_key_to_remote>dependantci_id</ext_key_to_remote>
+					<duplicates/>
+				</field>
+				<field id="impactorgencommci8_list" xsi:type="AttributeLinkedSetIndirect" _delta="define">
+					<linked_class>lnkConnectableCIToConnectableCI8</linked_class>
+					<ext_key_to_me>dependantci_id</ext_key_to_me>
+					<count_min>0</count_min>
+					<count_max>0</count_max>
+					<ext_key_to_remote>impactorci_id</ext_key_to_remote>
+					<duplicates/>
+				</field>
+				<field id="GenCommRedundancy8" xsi:type="AttributeRedundancySettings" _delta="define">
+					<sql>gencommredundancy8</sql>
+					<relation_code>impacts</relation_code>
+					<from_class>ConnectableCI</from_class>
+					<neighbour_id>gencommredundancy8</neighbour_id>
+					<enabled>true</enabled>
+					<enabled_mode>user</enabled_mode>
+					<min_up>1</min_up>
+					<min_up_type>count</min_up_type>
+					<min_up_mode>user</min_up_mode>
+				</field>
+				<!-- Set 9 -->
+				<field id="dependantgencommci9_list" xsi:type="AttributeLinkedSetIndirect" _delta="define">
+					<linked_class>lnkConnectableCIToConnectableCI9</linked_class>
+					<ext_key_to_me>impactorci_id</ext_key_to_me>
+					<count_min>0</count_min>
+					<count_max>0</count_max>
+					<ext_key_to_remote>dependantci_id</ext_key_to_remote>
+					<duplicates/>
+				</field>
+				<field id="impactorgencommci9_list" xsi:type="AttributeLinkedSetIndirect" _delta="define">
+					<linked_class>lnkConnectableCIToConnectableCI9</linked_class>
+					<ext_key_to_me>dependantci_id</ext_key_to_me>
+					<count_min>0</count_min>
+					<count_max>0</count_max>
+					<ext_key_to_remote>impactorci_id</ext_key_to_remote>
+					<duplicates/>
+				</field>
+				<field id="GenCommRedundancy9" xsi:type="AttributeRedundancySettings" _delta="define">
+					<sql>gencommredundancy9</sql>
+					<relation_code>impacts</relation_code>
+					<from_class>ConnectableCI</from_class>
+					<neighbour_id>gencommredundancy9</neighbour_id>
+					<enabled>true</enabled>
+					<enabled_mode>user</enabled_mode>
+					<min_up>1</min_up>
+					<min_up_type>count</min_up_type>
+					<min_up_mode>user</min_up_mode>
+				</field>
+			</fields>
+			<relations>
+				<relation id="impacts">
+					<neighbours>
+						<neighbour id="gencommredundancy0" _delta="define">
+							<attribute>dependantgencommci0_list</attribute>
+						</neighbour>
+						<neighbour id="gencommredundancy1" _delta="define">
+							<attribute>dependantgencommci1_list</attribute>
+						</neighbour>
+						<neighbour id="gencommredundancy2" _delta="define">
+							<attribute>dependantgencommci2_list</attribute>
+						</neighbour>
+						<neighbour id="gencommredundancy3" _delta="define">
+							<attribute>dependantgencommci3_list</attribute>
+						</neighbour>
+						<neighbour id="gencommredundancy4" _delta="define">
+							<attribute>dependantgencommci4_list</attribute>
+						</neighbour>
+						<neighbour id="gencommredundancy5" _delta="define">
+							<attribute>dependantgencommci5_list</attribute>
+						</neighbour>
+						<neighbour id="gencommredundancy6" _delta="define">
+							<attribute>dependantgencommci6_list</attribute>
+						</neighbour>
+						<neighbour id="gencommredundancy7" _delta="define">
+							<attribute>dependantgencommci7_list</attribute>
+						</neighbour>
+						<neighbour id="gencommredundancy8" _delta="define">
+							<attribute>dependantgencommci8_list</attribute>
+						</neighbour>
+						<neighbour id="gencommredundancy9" _delta="define">
+							<attribute>dependantgencommci9_list</attribute>
+						</neighbour>
+					</neighbours>
+				</relation>
+			</relations>
+		</class>
+		<class id="Enclosure" _delta="must_exist">
+			<presentation>
+				<details>
+					<items>
+						<item id="genericcommphysinterface_list" _delta="define">
+							<rank>55</rank>
+						</item>
+						<item id="genericcommvirtinterface_list" _delta="define">
+							<rank>56</rank>
+						</item>
+					</items>
+				</details>
+			</presentation>
+		</class>
+		<class id="NAS" _delta="must_exist">
+			<presentation>
+				<details>
+					<items>
+						<item id="genericcommphysinterface_list" _delta="define">
+							<rank>55</rank>
+						</item>
+						<item id="genericcommvirtinterface_list" _delta="define">
+							<rank>56</rank>
+						</item>
+					</items>
+				</details>
+			</presentation>
+		</class>
+		<class id="Server" _delta="must_exist">
+			<presentation>
+				<details>
+					<items>
+						<item id="genericcommphysinterface_list" _delta="define">
+							<rank>55</rank>
+						</item>
+						<item id="genericcommvirtinterface_list" _delta="define">
+							<rank>56</rank>
+						</item>
+					</items>
+				</details>
+			</presentation>
+		</class>
+		<class id="StorageSystem" _delta="must_exist">
+			<presentation>
+				<details>
+					<items>
+						<item id="genericcommphysinterface_list" _delta="define">
+							<rank>55</rank>
+						</item>
+						<item id="genericcommvirtinterface_list" _delta="define">
+							<rank>56</rank>
+						</item>
+					</items>
+				</details>
+			</presentation>
+		</class>
+		<class id="TapeLibrary" _delta="must_exist">
+			<presentation>
+				<details>
+					<items>
+						<item id="genericcommphysinterface_list" _delta="define">
+							<rank>55</rank>
+						</item>
+						<item id="genericcommvirtinterface_list" _delta="define">
+							<rank>56</rank>
+						</item>
+					</items>
+				</details>
+			</presentation>
+		</class>
+		<!-- Thanks to VDumas (again), the correct way to extend an AttributeEnum field -->
+		<class id="Model" _delta="must_exist">
+			<fields>
+				<field id="type" xsi:type="AttributeEnum" _delta="must_exist">
+					<values>
+						<value id="GenericCommDevice" _delta="define">GenericCommDevice</value>
+					</values>
+				</field>
+			</fields>
+		</class>
+	</classes>
+	<!--
+	I have no idea where (in witch menu) I'm adding The GenericCommDevice
+	I hope it will be in the list of 'new CIs'
+	-> Well yes, it is added in 'New devices', and also in 'Configuration Management -> Overview -> Infrastructure
+	-> For the record : Cell id=0 is the box order  top to bottom
+	-> <rnk>5</rank> is the horizontal order in the box. so seems also to be the dashlet id..
+	-->
+	<menus>
+		<menu id="ConfigManagementOverview" xsi:type="DashboardMenuNode" _delta="must_exist">
+			<rank>1</rank>
+			<parent>ConfigManagement</parent>
+			<definition>
+				<layout>DashboardLayoutOneCol</layout>
+				<title/>
+				<cells>
+					<cell id="0" _delta="must_exist">
+						<rank>0</rank>
+						<dashlets>
+							<dashlet id="99" xsi:type="DashletBadge" _delta="define">
+								<rank>5</rank>
+								<class>GenericCommDevice</class>
+							</dashlet>
+						</dashlets>
+					</cell>
+					<cell id="4" _delta="must_exist"> <!-- Dashboard -> Miscellaneous -->
+						<rank>0</rank>
+						<dashlets>
+							<dashlet id="90" xsi:type="DashletBadge" _delta="define">
+								<rank>6</rank>
+								<class>GenericCommSpeed</class>
+							</dashlet>
+							<dashlet id="91" xsi:type="DashletBadge" _delta="define">
+								<rank>7</rank>
+								<class>GenericPhysCommConnector</class>
+							</dashlet>
+							<dashlet id="92" xsi:type="DashletBadge" _delta="define">
+								<rank>8</rank>
+								<class>GenericCommProtocol</class>
+							</dashlet>
+							<dashlet id="93" xsi:type="DashletBadge" _delta="define">
+								<rank>9</rank>
+								<class>GenericCommDeviceType</class>
+							</dashlet>
+							<dashlet id="95" xsi:type="DashletBadge" _delta="define">
+								<rank>10</rank>
+								<class>GenericCommPhysInterface</class>
+							</dashlet>
+							<dashlet id="96" xsi:type="DashletBadge" _delta="define">
+								<rank>11</rank>
+								<class>GenericCommVirtInterface</class>
+							</dashlet>
+						</dashlets>
+					</cell>
+				</cells>
+			</definition>
+		</menu>
+	</menus>
+	<user_rights>
+		<groups>
+		</groups>
+		<profiles>
+		</profiles>
+	</user_rights>
+</itop_design>
