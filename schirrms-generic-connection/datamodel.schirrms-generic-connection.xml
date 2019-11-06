@@ -2761,6 +2761,7 @@
 				</relation>
 			</relations>
 		</class>
+		<!-- The Class Enclosure here create a dependency to the Connected Enclosure extention 
 		<class id="Enclosure" _delta="must_exist">
 			<presentation>
 				<details>
@@ -2775,6 +2776,7 @@
 				</details>
 			</presentation>
 		</class>
+		-->
 		<class id="NAS" _delta="must_exist">
 			<presentation>
 				<details>
