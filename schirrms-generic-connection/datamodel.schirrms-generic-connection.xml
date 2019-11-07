@@ -735,6 +735,7 @@
 				<field id="connected_to_device_name" xsi:type="AttributeExternalField">
 					<extkey_attcode>connected_to_device_id</extkey_attcode>
 					<target_attcode>name</target_attcode>
+					<filter><![CDATA[SELECT ConnectableCI WHERE finalclass != 'PatchPanel']]></filter>
 				</field>
 				<field id="connected_to_id" xsi:type="AttributeExternalKey">
 					<sql>connected_to_id</sql>
