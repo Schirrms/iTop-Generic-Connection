@@ -234,7 +234,7 @@
 					<static>false</static>
 					<access>public</access>
 					<type>Overload-DBObject</type>
-					<code><![CDATA[public function GetInitialStateAttributeFlags($sAttCode, &$aReasons = array())
+					<code><![CDATA[ public function GetInitialStateAttributeFlags($sAttCode, &$aReasons = array())
 					{
 						// Hide the calculated field in object creation form
 						if (($sAttCode == 'humanspeed'))
@@ -246,7 +246,7 @@
 					<static>false</static>
 					<access>public</access>
 					<type>Overload-DBObject</type>
-					<code><![CDATA[	public function OnInsert()
+					<code><![CDATA[ public function OnInsert()
 					{
 						$this->SetHumanSpeed();
 					}]]></code>
@@ -255,7 +255,7 @@
 					<static>false</static>
 					<access>public</access>
 					<type>Overload-DBObject</type>
-					<code><![CDATA[	public function OnUpdate()
+					<code><![CDATA[ public function OnUpdate()
 					{
 						$this->SetHumanSpeed();
 					}]]></code>
@@ -264,7 +264,7 @@
 					<static>false</static>
 					<access>public</access>
 					<type>Overload-DBObject</type>
-					<code><![CDATA[public function SetHumanSpeed()
+					<code><![CDATA[ public function SetHumanSpeed()
 					{
 						// read the new value of the bitSpeed
 						$dBitSpeed = $this->Get('bitspeed');
@@ -573,7 +573,7 @@
 					<static>false</static>
 					<access>protected</access>
 					<type>Overload-DBObject</type>
-					<code><![CDATA[	protected function AfterInsert()
+					<code><![CDATA[ protected function AfterInsert()
 						{
 							GenericCommFunct::UpdateCIDependencies($this->Get('connectableci_id'));
 							parent::AfterInsert();
@@ -584,7 +584,7 @@
 					<static>false</static>
 					<access>protected</access>
 					<type>Overload-DBObject</type>
-					<code><![CDATA[	protected function AfterDelete()
+					<code><![CDATA[ protected function AfterDelete()
 						{
 							GenericCommFunct::UpdateCIDependencies($this->Get('connectableci_id'));
 							parent::AfterDelete();
@@ -769,7 +769,7 @@
 					<static>false</static>
 					<access>protected</access>
 					<type>Overload-cmdbAbstractObject</type>
-					<code><![CDATA[	protected function ConnectRemotePort()
+					<code><![CDATA[ protected function ConnectRemotePort()
 						{
 							// print "ConnectRemotePort begins<BR>";
 							if (!(empty($this->Get('connected_to_id'))))
@@ -810,7 +810,7 @@
 					<static>false</static>
 					<access>protected</access>
 					<type>Overload-cmdbAbstractObject</type>
-					<code><![CDATA[	protected function DisconnectRemotePort()
+					<code><![CDATA[ protected function DisconnectRemotePort()
 						{
 							// print "DisconnectRemotePort begins<BR>";
 							if (!(empty($this->GetOriginal('connected_to_id'))))
@@ -852,7 +852,7 @@
 					<static>false</static>
 					<access>protected</access>
 					<type>Overload-DBObject</type>
-					<code><![CDATA[	protected function AfterInsert()
+					<code><![CDATA[ protected function AfterInsert()
 						{
 							$this->ConnectRemotePort();
 							parent::AfterInsert();
@@ -862,7 +862,7 @@
 					<static>false</static>
 					<access>protected</access>
 					<type>Overload-DBObject</type>
-					<code><![CDATA[	protected function OnUpdate()
+					<code><![CDATA[ protected function OnUpdate()
 						{
 							$this->DisconnectRemotePort();
 							$this->ConnectRemotePort();
@@ -873,7 +873,7 @@
 					<static>false</static>
 					<access>protected</access>
 					<type>Overload-DBObject</type>
-					<code><![CDATA[	protected function AfterUpdate()
+					<code><![CDATA[ protected function AfterUpdate()
 						{
 							GenericCommFunct::UpdateCIDependencies($this->Get('connectableci_id'));
 							parent::AfterUpdate();
@@ -883,7 +883,7 @@
 					<static>false</static>
 					<access>protected</access>
 					<type>Overload-DBObject</type>
-					<code><![CDATA[	protected function OnDelete()
+					<code><![CDATA[ protected function OnDelete()
 						{
 							$this->DisconnectRemotePort();
 							parent::OnDelete();
@@ -894,9 +894,9 @@
 					<code><![CDATA[
 						public function PrefillSearchForm(&$aContextParam)
 						{
-							$sDebugFile=$_SERVER['CONTEXT_DOCUMENT_ROOT']."/debug/dd-".date("Y-m-d").".txt";
-							file_put_contents($sDebugFile, "in the GenericCommInterface Class\n");
-							//file_put_contents($sDebugFile, print_r($aContextParam, true), FILE_APPEND);
+							// $sDebugFile=$_SERVER['CONTEXT_DOCUMENT_ROOT']."/debug/dd-".date("Y-m-d").".txt";
+							// file_put_contents($sDebugFile, "in the GenericCommInterface Class\n");
+							// file_put_contents($sDebugFile, print_r($aContextParam, true), FILE_APPEND);
 							if($aContextParam['dest_class'] == 'GenericCommVirtInterface')
 							{
 								if(MetaModel::IsValidAttCode($aContextParam['dest_class'],'connectableci_id') && !empty($aContextParam['source_obj']->Get('connectableci_id')) &&
@@ -1108,9 +1108,9 @@
 					<code><![CDATA[
 						public function PrefillSearchForm(&$aContextParam)
 						{
-							$sDebugFile=$_SERVER['CONTEXT_DOCUMENT_ROOT']."/debug/dd-".date("Y-m-d").".txt";
-							//file_put_contents($sDebugFile, "in the GenericCommVirtInterface Class\n");
-							//file_put_contents($sDebugFile, print_r($aContextParam, true), FILE_APPEND);
+							// $sDebugFile=$_SERVER['CONTEXT_DOCUMENT_ROOT']."/debug/dd-".date("Y-m-d").".txt";
+							// file_put_contents($sDebugFile, "in the GenericCommVirtInterface Class\n");
+							// file_put_contents($sDebugFile, print_r($aContextParam, true), FILE_APPEND);
 							if($aContextParam['dest_class'] == 'GenericCommInterface')
 							{
 								if(MetaModel::IsValidAttCode($aContextParam['dest_class'],'connectableci_id') && !empty($aContextParam['source_obj']->Get('connectableci_id')) &&
@@ -1129,7 +1129,7 @@
 					<static>false</static>
 					<access>protected</access>
 					<type>Overload-DBObject</type>
-					<code><![CDATA[	protected function AfterUpdate()
+					<code><![CDATA[ protected function AfterUpdate()
 						{
 							GenericCommFunct::UpdateCIDependencies($this->Get('connectableci_id'));
 							parent::AfterUpdate();

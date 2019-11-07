@@ -55,9 +55,9 @@ class GenericCommFunct
 
 	public function UpdateCIDependencies($device_id, $searchImpact = TRUE)
 	{
-		$sDebugFile=$_SERVER['CONTEXT_DOCUMENT_ROOT']."/debug/dd-".date("Y-m-d").".txt";
-		file_put_contents($sDebugFile, "BEGIN : ".date("H:i:s")."\n", FILE_APPEND);
-		file_put_contents($sDebugFile, "In the GenericCommInterface Class for the device ".$device_id."\n", FILE_APPEND);
+		// $sDebugFile=$_SERVER['CONTEXT_DOCUMENT_ROOT']."/debug/dd-".date("Y-m-d").".txt";
+		// file_put_contents($sDebugFile, "BEGIN : ".date("H:i:s")."\n", FILE_APPEND);
+		// file_put_contents($sDebugFile, "In the GenericCommInterface Class for the device ".$device_id."\n", FILE_APPEND);
 		// no $aContextParam in this case...
 		// file_put_contents($sDebugFile, print_r($aContextParam, true), FILE_APPEND);
 		// get all GenericCommInterface of the current device
@@ -134,19 +134,19 @@ class GenericCommFunct
 			// First the non redundant connections (in table 0)
 			$sOQL = "SELECT	lnkConnectableCIToConnectableCI0 WHERE dependantci_id = :device";
 			$oLnkTableSet0 = new DBObjectSet(DBObjectSearch::FromOQL($sOQL), array(), array('device' => $device_id));
-			file_put_contents($sDebugFile, "lnkConnectableCIToConnectableCI0->Count() (Dependant, non redundant) = ".$oLnkTableSet0->Count()."\n", FILE_APPEND);
+			// file_put_contents($sDebugFile, "lnkConnectableCIToConnectableCI0->Count() (Dependant, non redundant) = ".$oLnkTableSet0->Count()."\n", FILE_APPEND);
 			while ($oLnkTable = $oLnkTableSet0->Fetch())
 			{
 				if ( array_key_exists($oLnkTable->Get('impactorci_id'), $aDirectConnectDevices) ) 
 				{
 					// OK, link exists in the device and in the table
 					unset($aDirectConnectDevices[$oLnkTable->Get('impactorci_id')]);
-					file_put_contents($sDebugFile, "Remote impactor device ".$oLnkTable->Get('impactorci_id')." exists in both the device and the table, nothing to do\n", FILE_APPEND);
+					// file_put_contents($sDebugFile, "Remote impactor device ".$oLnkTable->Get('impactorci_id')." exists in both the device and the table, nothing to do\n", FILE_APPEND);
 				}
 				else
 				{
 					// Link exists in the table but not anymore in the device, to remove
-					file_put_contents($sDebugFile, "Remote impactor device ".$oLnkTable->Get('impactorci_id')." exists in the table, but not in the device, has to be removed from the table\n", FILE_APPEND);
+					// file_put_contents($sDebugFile, "Remote impactor device ".$oLnkTable->Get('impactorci_id')." exists in the table, but not in the device, has to be removed from the table\n", FILE_APPEND);
 					$oLnkTable->DBDelete();
 				}
 			}
@@ -154,7 +154,7 @@ class GenericCommFunct
 			foreach ($aDirectConnectDevices as $remoteDev => $nothing)
 			{
 				//each remaining $remoteDev should be linked in the lnkTables
-				file_put_contents($sDebugFile, "Remote impactor device ".$remoteDev." exists in the device, but not in the table, has to be created in the table\n", FILE_APPEND);
+				// file_put_contents($sDebugFile, "Remote impactor device ".$remoteDev." exists in the device, but not in the table, has to be created in the table\n", FILE_APPEND);
 				if ($remoteDev > 0 && $device_id >0 && $remoteDev != $device_id)
 				{
 					$oNewLink = new lnkConnectableCIToConnectableCI0();
@@ -199,11 +199,11 @@ class GenericCommFunct
 					if ($bPush)
 					{
 						// found a link set not present on the device. The links are to remove, the redundancy mode can stay
-						file_put_contents($sDebugFile, "The link set number ".$i." is not present on the device, I have to remove it.\n", FILE_APPEND);
+						// file_put_contents($sDebugFile, "The link set number ".$i." is not present on the device, I have to remove it.\n", FILE_APPEND);
 						$oLnkTableSet2 = new DBObjectSet(DBObjectSearch::FromOQL($sOQL), array(), array('device' => $device_id));
 						while ($oLnkTable2 = $oLnkTableSet2->Fetch())
 						{
-							file_put_contents($sDebugFile, "Remove the link ".$oLnkTable2->Get('impactorci_id')." -> ".$device_id." in link set number ".$i."\n", FILE_APPEND);
+							// file_put_contents($sDebugFile, "Remove the link ".$oLnkTable2->Get('impactorci_id')." -> ".$device_id." in link set number ".$i."\n", FILE_APPEND);
 							$aRemoteDevices[$oLnkTable2->Get('impactorci_id')]='';
 							$oLnkTable2->DBDelete();
 						}
@@ -211,7 +211,7 @@ class GenericCommFunct
 					else
 					{
 						// the current link exists already in the table, "nothing" to do
-						file_put_contents($sDebugFile, "The link set number ".$i." is the same as the entry ".$iDepKey.", nothing to do.\n", FILE_APPEND);
+						// file_put_contents($sDebugFile, "The link set number ".$i." is the same as the entry ".$iDepKey.", nothing to do.\n", FILE_APPEND);
 						unset($aDependDevice[$iDepKeyToRemove]);
 						unset($aFree[$i]);
 					}
@@ -224,7 +224,7 @@ class GenericCommFunct
 				unset($aFree[$nFreeSet]);
 				foreach ($aData['remoteDev'] as $remoteDev => $empty)
 				{
-					file_put_contents($sDebugFile, "Add the remote device : ".$remoteDev." and the redundancy ".$aData['Redundancy']." in link set number ".$nFreeSet."\n", FILE_APPEND);
+					// file_put_contents($sDebugFile, "Add the remote device : ".$remoteDev." and the redundancy ".$aData['Redundancy']." in link set number ".$nFreeSet."\n", FILE_APPEND);
 					if ($remoteDev > 0 && $device_id >0 && $remoteDev != $device_id)
 					{
 						$sNewLinkName = "lnkConnectableCIToConnectableCI".$nFreeSet;
@@ -242,7 +242,7 @@ class GenericCommFunct
 			// It's now time to call the function for the dependant devices, if any
 			if ( $searchImpact && count($aConnDevImpacts) > 0 )
 			{
-				file_put_contents($sDebugFile, "This device impacts ".count($aConnDevImpacts).", calling myself for them\n", FILE_APPEND);
+				// file_put_contents($sDebugFile, "This device impacts ".count($aConnDevImpacts).", calling myself for them\n", FILE_APPEND);
 				foreach ($aConnDevImpacts as $nDependantDevice => $empty )
 				{
 					GenericCommFunct::UpdateCIDependencies($nDependantDevice, FALSE);
