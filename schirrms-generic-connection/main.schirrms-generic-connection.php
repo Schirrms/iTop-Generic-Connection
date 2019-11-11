@@ -63,9 +63,10 @@ class GenericCommTriggers implements iApplicationObjectExtension
 		//file_put_contents($sDebugFile, "print_r \$oObject->ListChanges()\n", FILE_APPEND);
 		//file_put_contents($sDebugFile, print_r($oObject->ListChanges(), true), FILE_APPEND);
 
-		// if (isset($oObject->Get('connectableci_id')) // isset on an object doesn't work (at least this way !)
+		// if (isset($oObject->Get('connectableci_id')) // isset on an object value doesn't work (at least this way !)
 		// {
-			// file_put_contents($sDebugFile, "Value of \$oObject->Get('connectableci_id') : '".$oObject->Get('connectableci_id')."'\n", FILE_APPEND);
+			file_put_contents($sDebugFile, "Value of \$oObject->Get('comnent') : '".$oObject->Get('comment')."'\n", FILE_APPEND);
+			file_put_contents($sDebugFile, "Value of \$oObject->GetOriginal('comnent') : '".$oObject->GetOriginal('comment')."'\n", FILE_APPEND);
 			GenericCommFunct::UpdateCIDependencies($oObject->Get('connectableci_id'));
 		// }
 	}
