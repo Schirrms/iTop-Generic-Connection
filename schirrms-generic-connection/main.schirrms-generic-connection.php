@@ -62,7 +62,7 @@ class GenericCommTriggers implements iApplicationObjectExtension
 		// if (isset($oObject->Get('connectableci_id'))
 		// {
 			file_put_contents($sDebugFile, "Value of \$oObject->Get('connectableci_id') : '".$oObject->Get('connectableci_id')."'\n", FILE_APPEND);
-			GenericCommFunct::UpdateCIDependencies($oObject->Get('connectableci_id');
+			GenericCommFunct::UpdateCIDependencies($oObject->Get('connectableci_id'));
 		// }
 	}
 	public function OnDBInsert($oObject, $oChange = null)
