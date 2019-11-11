@@ -46,9 +46,13 @@ class GenericCommTriggers implements iApplicationObjectExtension
 		file_put_contents($sDebugFile, "In the GenericCommTrigger Class for the device ".$oObject->name."\n", FILE_APPEND);
 		file_put_contents($sDebugFile, "Object Class : '".$oObject->Get('finalclass')."'\n", FILE_APPEND);
 		// only for Generic interfaces
-		if(($oObject instanceof GenericCommInterface) === false) { return; }
-		file_put_contents($sDebugFile, "Instance is OK, continue...\n", FILE_APPEND);
-		file_put_contents($sDebugFile, "get_class(\$oObject) : ".get_class($oObject)."\n", FILE_APPEND);
+		if(($oObject instanceof GenericCommInterface) === false) 
+		{
+			file_put_contents($sDebugFile, "No action for this class\n", FILE_APPEND);
+			return; 
+		}
+		// file_put_contents($sDebugFile, "Instance is OK, continue...\n", FILE_APPEND);
+		// file_put_contents($sDebugFile, "get_class(\$oObject) : ".get_class($oObject)."\n", FILE_APPEND);
 		// if (isset(self::$aHasFormSubmit[get_class($oObject)][$oObject->GetKey()]))
 		// file_put_contents($sDebugFile, "print_r \$oObject\n", FILE_APPEND);
 		// file_put_contents($sDebugFile, print_r($oObject, true), FILE_APPEND);
@@ -59,9 +63,9 @@ class GenericCommTriggers implements iApplicationObjectExtension
 		//file_put_contents($sDebugFile, "print_r \$oObject->ListChanges()\n", FILE_APPEND);
 		//file_put_contents($sDebugFile, print_r($oObject->ListChanges(), true), FILE_APPEND);
 
-		// if (isset($oObject->Get('connectableci_id'))
+		// if (isset($oObject->Get('connectableci_id')) // isset on an object doesn't work (at least this way !)
 		// {
-			file_put_contents($sDebugFile, "Value of \$oObject->Get('connectableci_id') : '".$oObject->Get('connectableci_id')."'\n", FILE_APPEND);
+			// file_put_contents($sDebugFile, "Value of \$oObject->Get('connectableci_id') : '".$oObject->Get('connectableci_id')."'\n", FILE_APPEND);
 			GenericCommFunct::UpdateCIDependencies($oObject->Get('connectableci_id'));
 		// }
 	}
@@ -69,19 +73,14 @@ class GenericCommTriggers implements iApplicationObjectExtension
 	{
 		// only for Generic interfaces
 		if(($oObject instanceof GenericCommInterface) === false) { return; }
-		if (isset($oObject->m_aCurrValues->connectableci_id))
-		{
-			GenericCommFunct::UpdateCIDependencies($oObject->m_aCurrValues->connectableci_id);
+		GenericCommFunct::UpdateCIDependencies($oObject->Get('connectableci_id'));
 		}
 	}
 	public function OnDBDelete($oObject, $oChange = null)
 	{
 		// only for Generic interfaces
 		if(($oObject instanceof GenericCommInterface) === false) { return; }
-		if (isset($oObject->connectableci_id))
-		{
-			GenericCommFunct::UpdateCIDependencies($oObject->m_aCurrValues->connectableci_id);
-		}
+		GenericCommFunct::UpdateCIDependencies($oObject->Get('connectableci_id'));
 	}
 }
 
