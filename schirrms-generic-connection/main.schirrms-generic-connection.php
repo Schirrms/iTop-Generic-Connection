@@ -74,7 +74,6 @@ class GenericCommTriggers implements iApplicationObjectExtension
 		// only for Generic interfaces
 		if(($oObject instanceof GenericCommInterface) === false) { return; }
 		GenericCommFunct::UpdateCIDependencies($oObject->Get('connectableci_id'));
-		}
 	}
 	public function OnDBDelete($oObject, $oChange = null)
 	{
