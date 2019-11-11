@@ -48,11 +48,11 @@ class GenericCommTriggers implements iApplicationObjectExtension
 		// only for Generic interfaces
 		if(($oObject instanceof GenericCommInterface) === false) { return; }
 		file_put_contents($sDebugFile, "Instance is OK, continue...\n", FILE_APPEND);
-		file_put_contents($sDebugFile, print_r($oObject, true), FILE_APPEND);
+		file_put_contents($sDebugFile, print_r($oObject	, true), FILE_APPEND);
 
 		if (isset($oObject->connectableci_id))
 		{
-			file_put_contents($sDebugFile, "Value of \$oObject->connectableci_id : '".$oObject->connectableci_id."'\n", FILE_APPEND);
+			file_put_contents($sDebugFile, "Value of \$oObject->m_aCurrValues->connectableci_id : '".$oObject->m_aCurrValues->connectableci_id."'\n", FILE_APPEND);
 			GenericCommFunct::UpdateCIDependencies($oObject->connectableci_id);
 		}
 	}
@@ -60,9 +60,9 @@ class GenericCommTriggers implements iApplicationObjectExtension
 	{
 		// only for Generic interfaces
 		if(($oObject instanceof GenericCommInterface) === false) { return; }
-		if (isset($oObject->connectableci_id))
+		if (isset($oObject->m_aCurrValues->connectableci_id))
 		{
-			GenericCommFunct::UpdateCIDependencies($oObject->connectableci_id);
+			GenericCommFunct::UpdateCIDependencies($oObject->m_aCurrValues->connectableci_id);
 		}
 	}
 	public function OnDBDelete($oObject, $oChange = null)
@@ -71,7 +71,7 @@ class GenericCommTriggers implements iApplicationObjectExtension
 		if(($oObject instanceof GenericCommInterface) === false) { return; }
 		if (isset($oObject->connectableci_id))
 		{
-			GenericCommFunct::UpdateCIDependencies($oObject->connectableci_id);
+			GenericCommFunct::UpdateCIDependencies($oObject->m_aCurrValues->connectableci_id);
 		}
 	}
 }
