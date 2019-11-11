@@ -25,7 +25,7 @@
 
 // Attempt to create a trigerred event class, instead of using the Method AfterInsert, AfterUpdate and AfterDelete
 // see the thread : https://sourceforge.net/p/itop/discussion/922360/thread/e31171e91f/
-class UpdateCIDependencies implements iApplicationObjectExtension
+class GenericCommTriggers implements iApplicationObjectExtension
 {
 	public function OnIsModified($oObject)
 	{
@@ -41,8 +41,13 @@ class UpdateCIDependencies implements iApplicationObjectExtension
 	}
 	public function OnDBUpdate($oObject, $oChange = null)
 	{
+		$sDebugFile=$_SERVER['CONTEXT_DOCUMENT_ROOT']."/debug/dd-".date("Y-m-d").".txt";
+		file_put_contents($sDebugFile, "BEGIN : ".date("H:i:s")."\n", FILE_APPEND);
+		file_put_contents($sDebugFile, "In the GenericCommTrigger Class for the device ".$oObject->name."\n", FILE_APPEND);
+		file_put_contents($sDebugFile, "Object Class ".$oObject->finalclass."\n", FILE_APPEND);
 		// only for Generic interfaces
 		if(($oObject instanceof GenericCommInterface) === false) { return; }
+		file_put_contents($sDebugFile, "Instance is OK, continue..\n", FILE_APPEND);
 		if (isset($oObject->connectableci_id))
 		{
 			GenericCommFunct::UpdateCIDependencies($oObject->connectableci_id);
