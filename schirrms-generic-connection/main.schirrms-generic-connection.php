@@ -2,9 +2,9 @@
 
 // Copyright (C) 2018 Combodo SARL
 //
-//   This file is part of iTop.
+//   This file is part of an iTop extension.
 //
-//   iTop is free software; you can redistribute it and/or modify	
+//   iTop is free software; you can redistribute it and/or modify
 //   it under the terms of the GNU Affero General Public License as published by
 //   the Free Software Foundation, either version 3 of the License, or
 //   (at your option) any later version.
@@ -22,6 +22,52 @@
  * 
  * @author Pascal Schirrmann <schirrms@schirrms.net>
  */
+
+// Attempt to create a trigerred event class, instead of using the Method AfterInsert, AfterUpdate and AfterDelete
+// see the thread : https://sourceforge.net/p/itop/discussion/922360/thread/e31171e91f/
+class UpdateCIDependencies implements iApplicationObjectExtension
+{
+	public function OnIsModified($oObject)
+	{
+		return false;
+	}
+	public function OnCheckToWrite($oObject)
+	{
+		return array();
+	}
+	public function OnCheckToDelete($oObject)
+	{
+		return array();
+	}
+	public function OnDBUpdate($oObject, $oChange = null)
+	{
+		// only for Generic interfaces
+		if(($oObject instanceof GenericCommInterface) === false) { return; }
+		if (isset($oObject->connectableci_id))
+		{
+			GenericCommFunct::UpdateCIDependencies($oObject->connectableci_id));
+		}
+	}
+	public function OnDBInsert($oObject, $oChange = null)
+	{
+		// only for Generic interfaces
+		if(($oObject instanceof GenericCommInterface) === false) { return; }
+		if (isset($oObject->connectableci_id))
+		{
+			GenericCommFunct::UpdateCIDependencies($oObject->connectableci_id));
+		}
+	}
+	public function OnDBDelete($oObject, $oChange = null)
+	{
+		// only for Generic interfaces
+		if(($oObject instanceof GenericCommInterface) === false) { return; }
+		if (isset($oObject->connectableci_id))
+		{
+			GenericCommFunct::UpdateCIDependencies($oObject->connectableci_id));
+		}
+	}
+}
+
 class GenericCommFunct
 {
 	/**
@@ -58,8 +104,6 @@ class GenericCommFunct
 		// $sDebugFile=$_SERVER['CONTEXT_DOCUMENT_ROOT']."/debug/dd-".date("Y-m-d").".txt";
 		// file_put_contents($sDebugFile, "BEGIN : ".date("H:i:s")."\n", FILE_APPEND);
 		// file_put_contents($sDebugFile, "In the GenericCommInterface Class for the device ".$device_id."\n", FILE_APPEND);
-		// no $aContextParam in this case...
-		// file_put_contents($sDebugFile, print_r($aContextParam, true), FILE_APPEND);
 		// get all GenericCommInterface of the current device
 		$aConnDevImpacts = array();
 		$aConnDevDepends = array();

@@ -569,6 +569,7 @@
 				</field>
 			</fields>
 			<methods>
+				<!-- replaced by a trigered event (hopefully !)
 				<method id="AfterInsert">
 					<static>false</static>
 					<access>protected</access>
@@ -591,6 +592,7 @@
 						}]]>
 					</code>
 				</method>
+				-->
 			</methods>
 			<presentation>
 				<details>
@@ -870,6 +872,7 @@
 							parent::OnUpdate();
 				}]]></code>
 				</method>
+				<!-- replaced by a trigered event (hopefully) 
 				<method id="AfterUpdate">
 					<static>false</static>
 					<access>protected</access>
@@ -880,6 +883,7 @@
 							parent::AfterUpdate();
 				}]]></code>
 				</method>
+				-->
 				<method id="OnDelete">
 					<static>false</static>
 					<access>protected</access>
@@ -1126,6 +1130,7 @@
 						}]]>
 					</code>
 				</method>
+				<!--
 				<method id="AfterUpdate">
 					<static>false</static>
 					<access>protected</access>
@@ -1136,6 +1141,7 @@
 							parent::AfterUpdate();
 				}]]></code>
 				</method>
+				-->
 			</methods>
 			<presentation>
 				<details>
