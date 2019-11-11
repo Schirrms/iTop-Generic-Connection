@@ -45,7 +45,7 @@ class UpdateCIDependencies implements iApplicationObjectExtension
 		if(($oObject instanceof GenericCommInterface) === false) { return; }
 		if (isset($oObject->connectableci_id))
 		{
-			GenericCommFunct::UpdateCIDependencies($oObject->connectableci_id));
+			GenericCommFunct::UpdateCIDependencies($oObject->connectableci_id);
 		}
 	}
 	public function OnDBInsert($oObject, $oChange = null)
@@ -54,7 +54,7 @@ class UpdateCIDependencies implements iApplicationObjectExtension
 		if(($oObject instanceof GenericCommInterface) === false) { return; }
 		if (isset($oObject->connectableci_id))
 		{
-			GenericCommFunct::UpdateCIDependencies($oObject->connectableci_id));
+			GenericCommFunct::UpdateCIDependencies($oObject->connectableci_id);
 		}
 	}
 	public function OnDBDelete($oObject, $oChange = null)
@@ -63,7 +63,7 @@ class UpdateCIDependencies implements iApplicationObjectExtension
 		if(($oObject instanceof GenericCommInterface) === false) { return; }
 		if (isset($oObject->connectableci_id))
 		{
-			GenericCommFunct::UpdateCIDependencies($oObject->connectableci_id));
+			GenericCommFunct::UpdateCIDependencies($oObject->connectableci_id);
 		}
 	}
 }
