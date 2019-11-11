@@ -48,14 +48,14 @@ class GenericCommTriggers implements iApplicationObjectExtension
 		// only for Generic interfaces
 		if(($oObject instanceof GenericCommInterface) === false) { return; }
 		file_put_contents($sDebugFile, "Instance is OK, continue...\n", FILE_APPEND);
-		file_put_contents($sDebugFile, "print_r $oObject\n", FILE_APPEND);
+		file_put_contents($sDebugFile, "print_r \$oObject\n", FILE_APPEND);
 		file_put_contents($sDebugFile, print_r($oObject, true), FILE_APPEND);
-		file_put_contents($sDebugFile, "print_r $oObject->Get()\n", FILE_APPEND);
-		file_put_contents($sDebugFile, print_r($oObject->Get(), true), FILE_APPEND);
-		file_put_contents($sDebugFile, "print_r $oObject->GetOriginal()\n", FILE_APPEND);
-		file_put_contents($sDebugFile, print_r($oObject->GetOriginal(), true), FILE_APPEND);
-		file_put_contents($sDebugFile, "print_r $oObject->ListChanges()\n", FILE_APPEND);
-		file_put_contents($sDebugFile, print_r($oObject->ListChanges(), true), FILE_APPEND);
+		file_put_contents($sDebugFile, "print_r \$oObject->m_aCurrValues\n", FILE_APPEND);
+		file_put_contents($sDebugFile, print_r($oObject->m_aCurrValues, true), FILE_APPEND);
+		//file_put_contents($sDebugFile, "print_r \$oObject->GetOriginal()\n", FILE_APPEND);
+		//file_put_contents($sDebugFile, print_r($oObject->GetOriginal(), true), FILE_APPEND);
+		//file_put_contents($sDebugFile, "print_r \$oObject->ListChanges()\n", FILE_APPEND);
+		//file_put_contents($sDebugFile, print_r($oObject->ListChanges(), true), FILE_APPEND);
 
 		if (isset($oObject->m_aCurrValues->connectableci_id))
 		{
