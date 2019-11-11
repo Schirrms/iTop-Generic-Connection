@@ -47,9 +47,12 @@ class GenericCommTriggers implements iApplicationObjectExtension
 		file_put_contents($sDebugFile, "Object Class ".$oObject->finalclass."\n", FILE_APPEND);
 		// only for Generic interfaces
 		if(($oObject instanceof GenericCommInterface) === false) { return; }
-		file_put_contents($sDebugFile, "Instance is OK, continue..\n", FILE_APPEND);
+		file_put_contents($sDebugFile, "Instance is OK, continue...\n", FILE_APPEND);
+		file_put_contents($sDebugFile, print_r($oObject, true), FILE_APPEND);
+
 		if (isset($oObject->connectableci_id))
 		{
+			file_put_contents($sDebugFile, "Value of \$oObject->connectableci_id : '".$oObject->connectableci_id."'\n", FILE_APPEND);
 			GenericCommFunct::UpdateCIDependencies($oObject->connectableci_id);
 		}
 	}
