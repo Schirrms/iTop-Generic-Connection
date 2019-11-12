@@ -45,30 +45,41 @@ class GenericCommTriggers implements iApplicationObjectExtension
 		file_put_contents($sDebugFile, "BEGIN : ".date("H:i:s")."\n", FILE_APPEND);
 		file_put_contents($sDebugFile, "In the GenericCommTrigger Class for the device ".$oObject->name."\n", FILE_APPEND);
 		file_put_contents($sDebugFile, "Object Class : '".$oObject->Get('finalclass')."'\n", FILE_APPEND);
+		// If the modified object is a connectable CI and has at least one GenericCommInterface
+		if(($oObject instanceof ConnectableCI) === true) 
+		{
+			// Here, I have to add a test to check if there is at least one GenericCommInterface in this device
+			file_put_contents($sDebugFile, "Launch an update for the device itself\n", FILE_APPEND);
+			GenericCommFunct::UpdateCIDependencies($oObject->GetKey());
+		}
 		// only for Generic interfaces
-		if(($oObject instanceof GenericCommInterface) === false) 
+		else if(($oObject instanceof GenericCommInterface) === true) 
+		{
+			// file_put_contents($sDebugFile, "Instance is OK, continue...\n", FILE_APPEND);
+			// file_put_contents($sDebugFile, "get_class(\$oObject) : ".get_class($oObject)."\n", FILE_APPEND);
+			// if (isset(self::$aHasFormSubmit[get_class($oObject)][$oObject->GetKey()]))
+			// file_put_contents($sDebugFile, "print_r \$oObject\n", FILE_APPEND);
+			// file_put_contents($sDebugFile, print_r($oObject, true), FILE_APPEND);
+			// file_put_contents($sDebugFile, "print_r \$oObject->m_aCurrValues\n", FILE_APPEND);
+			// file_put_contents($sDebugFile, print_r($oObject->m_aCurrValues, true), FILE_APPEND);
+			//file_put_contents($sDebugFile, "print_r \$oObject->GetOriginal()\n", FILE_APPEND);
+			//file_put_contents($sDebugFile, print_r($oObject->GetOriginal(), true), FILE_APPEND);
+			//file_put_contents($sDebugFile, "print_r \$oObject->ListChanges()\n", FILE_APPEND);
+			//file_put_contents($sDebugFile, print_r($oObject->ListChanges(), true), FILE_APPEND);
+
+			// if (isset($oObject->Get('connectableci_id')) // isset on an object value doesn't work (at least this way !)
+			// {
+				file_put_contents($sDebugFile, "Value of \$oObject->Get('comnent') : '".$oObject->Get('comment')."'\n", FILE_APPEND);
+				file_put_contents($sDebugFile, "Value of \$oObject->GetOriginal('comnent') : '".$oObject->GetOriginal('comment')."'\n", FILE_APPEND);
+				GenericCommFunct::UpdateCIDependencies($oObject->Get('connectableci_id'));
+			// }
+		}
+		else 
 		{
 			file_put_contents($sDebugFile, "No action for this class\n", FILE_APPEND);
 			return; 
 		}
-		// file_put_contents($sDebugFile, "Instance is OK, continue...\n", FILE_APPEND);
-		// file_put_contents($sDebugFile, "get_class(\$oObject) : ".get_class($oObject)."\n", FILE_APPEND);
-		// if (isset(self::$aHasFormSubmit[get_class($oObject)][$oObject->GetKey()]))
-		// file_put_contents($sDebugFile, "print_r \$oObject\n", FILE_APPEND);
-		// file_put_contents($sDebugFile, print_r($oObject, true), FILE_APPEND);
-		// file_put_contents($sDebugFile, "print_r \$oObject->m_aCurrValues\n", FILE_APPEND);
-		// file_put_contents($sDebugFile, print_r($oObject->m_aCurrValues, true), FILE_APPEND);
-		//file_put_contents($sDebugFile, "print_r \$oObject->GetOriginal()\n", FILE_APPEND);
-		//file_put_contents($sDebugFile, print_r($oObject->GetOriginal(), true), FILE_APPEND);
-		//file_put_contents($sDebugFile, "print_r \$oObject->ListChanges()\n", FILE_APPEND);
-		//file_put_contents($sDebugFile, print_r($oObject->ListChanges(), true), FILE_APPEND);
 
-		// if (isset($oObject->Get('connectableci_id')) // isset on an object value doesn't work (at least this way !)
-		// {
-			file_put_contents($sDebugFile, "Value of \$oObject->Get('comnent') : '".$oObject->Get('comment')."'\n", FILE_APPEND);
-			file_put_contents($sDebugFile, "Value of \$oObject->GetOriginal('comnent') : '".$oObject->GetOriginal('comment')."'\n", FILE_APPEND);
-			GenericCommFunct::UpdateCIDependencies($oObject->Get('connectableci_id'));
-		// }
 	}
 	public function OnDBInsert($oObject, $oChange = null)
 	{
