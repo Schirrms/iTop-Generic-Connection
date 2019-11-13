@@ -43,7 +43,7 @@ class GenericCommTriggers implements iApplicationObjectExtension
 	{
 		$sDebugFile=$_SERVER['CONTEXT_DOCUMENT_ROOT']."/debug/dd-".date("Y-m-d").".txt";
 		file_put_contents($sDebugFile, "BEGIN : ".date("H:i:s")."\n", FILE_APPEND);
-		file_put_contents($sDebugFile, "In the GenericCommTrigger Class for the device ".$oObject->Get('name').", function OnDBUpdate\n", FILE_APPEND);
+		file_put_contents($sDebugFile, "In the GenericCommTrigger Class for the device ".$oObject->GetKey().", function OnDBUpdate\n", FILE_APPEND);
 		file_put_contents($sDebugFile, "Object Class : '".$oObject->Get('finalclass')."'\n", FILE_APPEND);
 		// If the modified object is a connectable CI and has at least one GenericCommInterface
 		if(($oObject instanceof ConnectableCI) === true) 
@@ -80,7 +80,7 @@ class GenericCommTriggers implements iApplicationObjectExtension
 	public function OnDBInsert($oObject, $oChange = null)
 	{
 		file_put_contents($sDebugFile, "BEGIN : ".date("H:i:s")."\n", FILE_APPEND);
-		file_put_contents($sDebugFile, "In the GenericCommTrigger Class for the device ".$oObject->Get('name').", function OnDBInsert\n", FILE_APPEND);
+		file_put_contents($sDebugFile, "In the GenericCommTrigger Class for the device ".$oObject->GetKey().", function OnDBInsert\n", FILE_APPEND);
 		file_put_contents($sDebugFile, "Object Class : '".$oObject->Get('finalclass')."'\n", FILE_APPEND);
 		// only for Generic interfaces
 		if(($oObject instanceof GenericCommInterface) === false) { return; }
@@ -90,7 +90,7 @@ class GenericCommTriggers implements iApplicationObjectExtension
 	public function OnDBDelete($oObject, $oChange = null)
 	{
 		file_put_contents($sDebugFile, "BEGIN : ".date("H:i:s")."\n", FILE_APPEND);
-		file_put_contents($sDebugFile, "In the GenericCommTrigger Class for the device ".$oObject->Get('name').", function OnDBDelete\n", FILE_APPEND);
+		file_put_contents($sDebugFile, "In the GenericCommTrigger Class for the device ".$oObject->GetKey().", function OnDBDelete\n", FILE_APPEND);
 		file_put_contents($sDebugFile, "Object Class : '".$oObject->Get('finalclass')."'\n", FILE_APPEND);
 		// only for Generic interfaces
 		if(($oObject instanceof GenericCommInterface) === false) { return; }
