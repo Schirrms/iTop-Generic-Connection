@@ -43,31 +43,19 @@ class GenericCommTriggers implements iApplicationObjectExtension
 	{
 		$sDebugFile=$_SERVER['CONTEXT_DOCUMENT_ROOT']."/debug/dd-".date("Y-m-d").".txt";
 		file_put_contents($sDebugFile, "In the GenericCommTrigger Class, function OnDBUpdate BEGIN : ".date("H:i:s")."\n", FILE_APPEND);
-		// If the modified object is a connectable CI and has at least one GenericCommInterface
+		// If the modified object is a connectable CI
 		if(($oObject instanceof ConnectableCI) === true) 
 		{
-			// Here, I have to add a test to check if there is at least one GenericCommInterface in this device
 			file_put_contents($sDebugFile, "On the device ".$oObject->Get('name').", Object Class : '".$oObject->Get('finalclass')."'\n", FILE_APPEND);
 			file_put_contents($sDebugFile, "Launch an update for the device itself\n", FILE_APPEND);
 			GenericCommFunct::UpdateCIDependencies($oObject->GetKey());
 		}
 		// only for Generic interfaces
-		/* as I ran an update in case of change of any ConnectedCI, this is not need anymore */
+		// Only needed in cases of an update on the interface, whitout changes on the Main CI
 		else if(($oObject instanceof GenericCommInterface) === true) 
 		{
 			file_put_contents($sDebugFile, "On the device ".$oObject->Get('name').", Object Class : '".$oObject->Get('finalclass')."'\n", FILE_APPEND);
 			file_put_contents($sDebugFile, "Instance is of type 'GenericCommInterface', continue...\n", FILE_APPEND);
-			// file_put_contents($sDebugFile, "get_class(\$oObject) : ".get_class($oObject)."\n", FILE_APPEND);
-			// if (isset(self::$aHasFormSubmit[get_class($oObject)][$oObject->GetKey()]))
-			// file_put_contents($sDebugFile, "print_r \$oObject\n", FILE_APPEND);
-			// file_put_contents($sDebugFile, print_r($oObject, true), FILE_APPEND);
-			// file_put_contents($sDebugFile, "print_r \$oObject->m_aCurrValues\n", FILE_APPEND);
-			// file_put_contents($sDebugFile, print_r($oObject->m_aCurrValues, true), FILE_APPEND);
-			//file_put_contents($sDebugFile, "print_r \$oObject->GetOriginal()\n", FILE_APPEND);
-			//file_put_contents($sDebugFile, print_r($oObject->GetOriginal(), true), FILE_APPEND);
-			//file_put_contents($sDebugFile, "print_r \$oObject->ListChanges()\n", FILE_APPEND);
-			//file_put_contents($sDebugFile, print_r($oObject->ListChanges(), true), FILE_APPEND);
-
 			GenericCommFunct::UpdateCIDependencies($oObject->Get('connectableci_id'));
 		}
 		else 
@@ -81,14 +69,23 @@ class GenericCommTriggers implements iApplicationObjectExtension
 	{
 		$sDebugFile=$_SERVER['CONTEXT_DOCUMENT_ROOT']."/debug/dd-".date("Y-m-d").".txt";
 		file_put_contents($sDebugFile, "In the GenericCommTrigger Class, function OnDBInsert BEGIN : ".date("H:i:s")."\n", FILE_APPEND);
-		// only for Generic interfaces
-		if(($oObject instanceof GenericCommInterface) === false) { return; }
-		file_put_contents($sDebugFile, "On the device ".$oObject->Get('name').", Object Class : '".$oObject->Get('finalclass')."'\n", FILE_APPEND);
-		file_put_contents($sDebugFile, "Instance is of type 'GenericCommInterface', continue...\n", FILE_APPEND);
-		// GenericCommFunct::UpdateCIDependencies($oObject->Get('connectableci_id'));
+		// If the modified object is a connectable CI
+		if(($oObject instanceof ConnectableCI) === true) 
+		{
+			file_put_contents($sDebugFile, "On the device ".$oObject->Get('name').", Object Class : '".$oObject->Get('finalclass')."'\n", FILE_APPEND);
+			file_put_contents($sDebugFile, "Launch an update for the device itself\n", FILE_APPEND);
+			GenericCommFunct::UpdateCIDependencies($oObject->GetKey());
+		}
+		// No need in case of ageneric interface creation, as this launch also an update of the main CI
+		else 
+		{
+			file_put_contents($sDebugFile, "No action for this class\n", FILE_APPEND);
+			return; 
+		}
 	}
 	public function OnDBDelete($oObject, $oChange = null)
 	{
+		// Probably useless, as iTop itself do a really nice cleaning at a removal
 		$sDebugFile=$_SERVER['CONTEXT_DOCUMENT_ROOT']."/debug/dd-".date("Y-m-d").".txt";
 		file_put_contents($sDebugFile, "In the GenericCommTrigger Class, function OnDBDelete BEGIN : ".date("H:i:s")."\n", FILE_APPEND);
 		// only for Generic interfaces
