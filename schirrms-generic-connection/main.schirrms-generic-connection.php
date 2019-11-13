@@ -41,57 +41,46 @@ class GenericCommTriggers implements iApplicationObjectExtension
 	}
 	public function OnDBUpdate($oObject, $oChange = null)
 	{
-		$sDebugFile=$_SERVER['CONTEXT_DOCUMENT_ROOT']."/debug/dd-".date("Y-m-d").".txt";
-		file_put_contents($sDebugFile, "In the GenericCommTrigger Class, function OnDBUpdate BEGIN : ".date("H:i:s")."\n", FILE_APPEND);
+		// $sDebugFile=$_SERVER['CONTEXT_DOCUMENT_ROOT']."/debug/dd-".date("Y-m-d").".txt";
+		// file_put_contents($sDebugFile, "In the GenericCommTrigger Class, function OnDBUpdate BEGIN : ".date("H:i:s")."\n", FILE_APPEND);
 		// If the modified object is a connectable CI
 		if(($oObject instanceof ConnectableCI) === true) 
 		{
-			file_put_contents($sDebugFile, "On the device ".$oObject->Get('name').", Object Class : '".$oObject->Get('finalclass')."'\n", FILE_APPEND);
-			file_put_contents($sDebugFile, "Launch an update for the device itself\n", FILE_APPEND);
+			// file_put_contents($sDebugFile, "On the device ".$oObject->Get('name').", Object Class : '".$oObject->Get('finalclass')."'\n", FILE_APPEND);
+			// file_put_contents($sDebugFile, "Launch an update for the device itself\n", FILE_APPEND);
 			GenericCommFunct::UpdateCIDependencies($oObject->GetKey());
 		}
 		// only for Generic interfaces
 		// Only needed in cases of an update on the interface, whitout changes on the Main CI
 		else if(($oObject instanceof GenericCommInterface) === true) 
 		{
-			file_put_contents($sDebugFile, "On the device ".$oObject->Get('name').", Object Class : '".$oObject->Get('finalclass')."'\n", FILE_APPEND);
-			file_put_contents($sDebugFile, "Instance is of type 'GenericCommInterface', continue...\n", FILE_APPEND);
+			// file_put_contents($sDebugFile, "On the device ".$oObject->Get('name').", Object Class : '".$oObject->Get('finalclass')."'\n", FILE_APPEND);
+			// file_put_contents($sDebugFile, "Instance is of type 'GenericCommInterface', continue...\n", FILE_APPEND);
 			GenericCommFunct::UpdateCIDependencies($oObject->Get('connectableci_id'));
 		}
-		else 
-		{
-			file_put_contents($sDebugFile, "No action for this class\n", FILE_APPEND);
-			return; 
-		}
-
 	}
 	public function OnDBInsert($oObject, $oChange = null)
 	{
-		$sDebugFile=$_SERVER['CONTEXT_DOCUMENT_ROOT']."/debug/dd-".date("Y-m-d").".txt";
-		file_put_contents($sDebugFile, "In the GenericCommTrigger Class, function OnDBInsert BEGIN : ".date("H:i:s")."\n", FILE_APPEND);
+		// $sDebugFile=$_SERVER['CONTEXT_DOCUMENT_ROOT']."/debug/dd-".date("Y-m-d").".txt";
+		// file_put_contents($sDebugFile, "In the GenericCommTrigger Class, function OnDBInsert BEGIN : ".date("H:i:s")."\n", FILE_APPEND);
 		// If the modified object is a connectable CI
 		if(($oObject instanceof ConnectableCI) === true) 
 		{
-			file_put_contents($sDebugFile, "On the device ".$oObject->Get('name').", Object Class : '".$oObject->Get('finalclass')."'\n", FILE_APPEND);
-			file_put_contents($sDebugFile, "Launch an update for the device itself\n", FILE_APPEND);
+			// file_put_contents($sDebugFile, "On the device ".$oObject->Get('name').", Object Class : '".$oObject->Get('finalclass')."'\n", FILE_APPEND);
+			// file_put_contents($sDebugFile, "Launch an update for the device itself\n", FILE_APPEND);
 			GenericCommFunct::UpdateCIDependencies($oObject->GetKey());
 		}
 		// No need in case of ageneric interface creation, as this launch also an update of the main CI
-		else 
-		{
-			file_put_contents($sDebugFile, "No action for this class\n", FILE_APPEND);
-			return; 
-		}
 	}
 	public function OnDBDelete($oObject, $oChange = null)
 	{
 		// Probably useless, as iTop itself do a really nice cleaning at a removal
-		$sDebugFile=$_SERVER['CONTEXT_DOCUMENT_ROOT']."/debug/dd-".date("Y-m-d").".txt";
-		file_put_contents($sDebugFile, "In the GenericCommTrigger Class, function OnDBDelete BEGIN : ".date("H:i:s")."\n", FILE_APPEND);
+		// $sDebugFile=$_SERVER['CONTEXT_DOCUMENT_ROOT']."/debug/dd-".date("Y-m-d").".txt";
+		// file_put_contents($sDebugFile, "In the GenericCommTrigger Class, function OnDBDelete BEGIN : ".date("H:i:s")."\n", FILE_APPEND);
 		// only for Generic interfaces
-		if(($oObject instanceof GenericCommInterface) === false) { return; }
-		file_put_contents($sDebugFile, "On the device ".$oObject->Get('name').", Object Class : '".$oObject->Get('finalclass')."'\n", FILE_APPEND);
-		file_put_contents($sDebugFile, "Instance is of type 'GenericCommInterface', continue...\n", FILE_APPEND);
+		// if(($oObject instanceof GenericCommInterface) === false) { return; }
+		// file_put_contents($sDebugFile, "On the device ".$oObject->Get('name').", Object Class : '".$oObject->Get('finalclass')."'\n", FILE_APPEND);
+		// file_put_contents($sDebugFile, "Instance is of type 'GenericCommInterface', continue...\n", FILE_APPEND);
 		// GenericCommFunct::UpdateCIDependencies($oObject->Get('connectableci_id'));
 	}
 }
