@@ -43,7 +43,7 @@ class GenericCommTriggers implements iApplicationObjectExtension
 	{
 		$sDebugFile=$_SERVER['CONTEXT_DOCUMENT_ROOT']."/debug/dd-".date("Y-m-d").".txt";
 		file_put_contents($sDebugFile, "BEGIN : ".date("H:i:s")."\n", FILE_APPEND);
-		file_put_contents($sDebugFile, "In the GenericCommTrigger Class for the device ".$oObject->name."\n", FILE_APPEND);
+		file_put_contents($sDebugFile, "In the GenericCommTrigger Class for the device ".$oObject->name.", function OnDBUpdate\n", FILE_APPEND);
 		file_put_contents($sDebugFile, "Object Class : '".$oObject->Get('finalclass')."'\n", FILE_APPEND);
 		// If the modified object is a connectable CI and has at least one GenericCommInterface
 		if(($oObject instanceof ConnectableCI) === true) 
@@ -53,9 +53,10 @@ class GenericCommTriggers implements iApplicationObjectExtension
 			GenericCommFunct::UpdateCIDependencies($oObject->GetKey());
 		}
 		// only for Generic interfaces
+		/* as I ran an update in case of change of any ConnectedCI, this is not need anymore */
 		else if(($oObject instanceof GenericCommInterface) === true) 
 		{
-			// file_put_contents($sDebugFile, "Instance is OK, continue...\n", FILE_APPEND);
+			file_put_contents($sDebugFile, "Instance is of type 'GenericCommInterface', continue...\n", FILE_APPEND);
 			// file_put_contents($sDebugFile, "get_class(\$oObject) : ".get_class($oObject)."\n", FILE_APPEND);
 			// if (isset(self::$aHasFormSubmit[get_class($oObject)][$oObject->GetKey()]))
 			// file_put_contents($sDebugFile, "print_r \$oObject\n", FILE_APPEND);
@@ -67,12 +68,7 @@ class GenericCommTriggers implements iApplicationObjectExtension
 			//file_put_contents($sDebugFile, "print_r \$oObject->ListChanges()\n", FILE_APPEND);
 			//file_put_contents($sDebugFile, print_r($oObject->ListChanges(), true), FILE_APPEND);
 
-			// if (isset($oObject->Get('connectableci_id')) // isset on an object value doesn't work (at least this way !)
-			// {
-				file_put_contents($sDebugFile, "Value of \$oObject->Get('comnent') : '".$oObject->Get('comment')."'\n", FILE_APPEND);
-				file_put_contents($sDebugFile, "Value of \$oObject->GetOriginal('comnent') : '".$oObject->GetOriginal('comment')."'\n", FILE_APPEND);
-				GenericCommFunct::UpdateCIDependencies($oObject->Get('connectableci_id'));
-			// }
+			// GenericCommFunct::UpdateCIDependencies($oObject->Get('connectableci_id'));
 		}
 		else 
 		{
@@ -83,15 +79,23 @@ class GenericCommTriggers implements iApplicationObjectExtension
 	}
 	public function OnDBInsert($oObject, $oChange = null)
 	{
+		file_put_contents($sDebugFile, "BEGIN : ".date("H:i:s")."\n", FILE_APPEND);
+		file_put_contents($sDebugFile, "In the GenericCommTrigger Class for the device ".$oObject->name.", function OnDBInsert\n", FILE_APPEND);
+		file_put_contents($sDebugFile, "Object Class : '".$oObject->Get('finalclass')."'\n", FILE_APPEND);
 		// only for Generic interfaces
 		if(($oObject instanceof GenericCommInterface) === false) { return; }
-		GenericCommFunct::UpdateCIDependencies($oObject->Get('connectableci_id'));
+		file_put_contents($sDebugFile, "Instance is of type 'GenericCommInterface', continue...\n", FILE_APPEND);
+		// GenericCommFunct::UpdateCIDependencies($oObject->Get('connectableci_id'));
 	}
 	public function OnDBDelete($oObject, $oChange = null)
 	{
+		file_put_contents($sDebugFile, "BEGIN : ".date("H:i:s")."\n", FILE_APPEND);
+		file_put_contents($sDebugFile, "In the GenericCommTrigger Class for the device ".$oObject->name.", function OnDBDelete\n", FILE_APPEND);
+		file_put_contents($sDebugFile, "Object Class : '".$oObject->Get('finalclass')."'\n", FILE_APPEND);
 		// only for Generic interfaces
 		if(($oObject instanceof GenericCommInterface) === false) { return; }
-		GenericCommFunct::UpdateCIDependencies($oObject->Get('connectableci_id'));
+		file_put_contents($sDebugFile, "Instance is of type 'GenericCommInterface', continue...\n", FILE_APPEND);
+		// GenericCommFunct::UpdateCIDependencies($oObject->Get('connectableci_id'));
 	}
 }
 
