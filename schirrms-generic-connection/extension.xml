@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension format="1.0">
+	<extension_code>schirrms-generic-connection</extension_code>
+	<company>Schirrm's Studio</company>
+	<author><![CDATA[Pascal Schirrmann]]></author>
+	<label><![CDATA[Generic Connection]]></label>
+	<description><![CDATA[New kind of generic interfaces, generic connection devices instead of specialized network connections, san devices...]]></description>
+	<version>0.7.2</version>
+	<release_date>2019-11-15</release_date>
+	<version_description><![CDATA[Includes an optional extension for Molkobain's Datacenter View]]></version_description>
+	<itop_version_min>2.5.0</itop_version_min>
+	<status>beta</status>
+	<mandatory>false</mandatory>
+	<more_info_url>https://github.com/Schirrms/iTop-Generic-Connection</more_info_url>
+</extension>
