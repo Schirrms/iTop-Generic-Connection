@@ -15,8 +15,8 @@ SetupWebPage::AddModule(
 		// Setup
 		//
 		'dependencies' => array(
-			'schirrms-generic-connection/0.7.2',
-			'molkobain-datacenter-view/1.5.1'
+			//'schirrms-generic-connection/0.7.2',
+			//'molkobain-datacenter-view/1.5.1'
 		),
 		'mandatory' => false,
 		'visible' => true,
