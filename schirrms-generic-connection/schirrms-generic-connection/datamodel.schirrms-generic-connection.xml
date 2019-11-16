@@ -2312,8 +2312,11 @@
 						<item id="managementip">
 							<rank>55</rank>
 						</item>
-						<item id="brand_id">
+						<item id="genericcommdevicetype_id">
 							<rank>60</rank>
+						</item>
+						<item id="brand_id">
+							<rank>65</rank>
 						</item>
 						<item id="model_id">
 							<rank>70</rank>
@@ -2358,11 +2361,14 @@
 						<item id="brand_id">
 							<rank>50</rank>
 						</item>
-						<item id="model_id">
+						<item id="genericcommdevicetype_id">
 							<rank>60</rank>
 						</item>
-						<item id="serialnumber">
+						<item id="model_id">
 							<rank>70</rank>
+						</item>
+						<item id="serialnumber">
+							<rank>80</rank>
 						</item>
 						<!-- depends on Molkobains datacenter view
 						<item id="position_v">
