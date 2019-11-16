@@ -5,7 +5,7 @@
 
 SetupWebPage::AddModule(
 	__FILE__, // Path to the current file, all other file names are relative to the directory containing this file
-	'schirrms-generic-connection/0.7.2',
+	'schirrms-generic-connection/0.7.3',
 	array(
 		// Identification
 		//
