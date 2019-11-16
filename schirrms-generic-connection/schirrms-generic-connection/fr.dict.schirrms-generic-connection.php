@@ -52,6 +52,8 @@ Dict::Add('FR FR', 'French', 'Français', array(
 	'Class:GenericCommPhysInterface/Attribute:connected_to_name' => 'Nom de l\'interface connectée sur l\'équipement distant',
 	'Class:GenericCommPhysInterface/Attribute:connection_impact' => 'Impacts l\'équipement distant ou dépend de lui ?',
 	'Class:GenericCommPhysInterface/Attribute:connection_impact+' => 'Si la perte de cette connexion impacte cet équipement, on \'dépent\'. Sinon, on \'impacte\'',
+	'Class:GenericCommPhysInterface/Attribute:connection_impact/depends' => 'dépend de',
+	'Class:GenericCommPhysInterface/Attribute:connection_impact/impacts' => 'impacte',
 	'Class:GenericCommVirtInterface' => 'Interface de connexion virtuelle',
 	'Class:GenericCommVirtInterface/Attribute:virtualcommredundancy_id' => 'Type de redondance',
 	'Class:GenericCommVirtInterface/Attribute:virtualcommredundancy_id+' => 'Choisissez le type de redondance utilisé sur cette interface, s\'il y en a une.',
