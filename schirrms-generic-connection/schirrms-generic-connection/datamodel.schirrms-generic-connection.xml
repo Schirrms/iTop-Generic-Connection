@@ -2849,12 +2849,16 @@
 								<rank>9</rank>
 								<class>GenericCommDeviceType</class>
 							</dashlet>
-							<dashlet id="95" xsi:type="DashletBadge" _delta="define">
+							<dashlet id="94" xsi:type="DashletBadge" _delta="define">
 								<rank>10</rank>
+								<class>VirtualCommRedundancy</class>
+							</dashlet>
+							<dashlet id="95" xsi:type="DashletBadge" _delta="define">
+								<rank>11</rank>
 								<class>GenericCommPhysInterface</class>
 							</dashlet>
 							<dashlet id="96" xsi:type="DashletBadge" _delta="define">
-								<rank>11</rank>
+								<rank>12</rank>
 								<class>GenericCommVirtInterface</class>
 							</dashlet>
 						</dashlets>
