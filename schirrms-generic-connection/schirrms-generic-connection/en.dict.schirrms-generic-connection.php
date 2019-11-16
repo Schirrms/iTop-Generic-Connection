@@ -52,6 +52,8 @@ Dict::Add('EN US', 'English', 'English', array(
 	'Class:GenericCommPhysInterface/Attribute:connected_to_name' => 'Interface connected on remote device name',
 	'Class:GenericCommPhysInterface/Attribute:connection_impact' => 'Impacts other side or depends on it?',
 	'Class:GenericCommPhysInterface/Attribute:connection_impact+' => 'If the loss of this connection impacts me, I depend on it. If the loss impacts the other side, I impact',
+	'Class:GenericCommPhysInterface/Attribute:connection_impact/Value:depends' => 'Depends on',
+	'Class:GenericCommPhysInterface/Attribute:connection_impact/Value:impacts' => 'Impacts',
 	'Class:GenericCommVirtInterface' => 'Virtual Connection Interface',
 	'Class:GenericCommVirtInterface/Attribute:virtualcommredundancy_id' => 'Redundancy kind',
 	'Class:GenericCommVirtInterface/Attribute:virtualcommredundancy_id+' => 'Select the Redundancy kind used on this virtual interface, if any',
