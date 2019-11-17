@@ -254,9 +254,15 @@ I really want to thanks :
 
 ## Dependencies
 
-I think that this extension has no specific constraints. It should install on a very minimal iTop installation. The 'Datacenter part is needed (and, normally, the extension should not install without this part)'
+I think that this extension has no specific constraints. It should install on a very minimal iTop installation. 
+
+Here are the needed parts :
+
+![iTop required components](images/iTop-Minimal-Prerequisites.png)
 
 Until today, I had the feeling that this extension should work in itop starting in version 2.5.0, but today, I add some uniqueness rules, and that is a part of iTop 2.6, so better to install on a 2.6.x or newer version.
+
+OK, some tests further on a 2.5.1 installation : that extension definitively needs a 2.6.0 or further version of iTop : The uniqueness Rules are silently ignored in 2.5.1, and more annoying, one filter (in a prefill form) come back empty. So it's not possible to add parent interfaces to a virtual interface. That breaks a little the toy !
 
 ## Download
 

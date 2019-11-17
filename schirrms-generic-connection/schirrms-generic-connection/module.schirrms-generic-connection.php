@@ -15,8 +15,10 @@ SetupWebPage::AddModule(
 		// Setup
 		//
 		'dependencies' => array(
-			'itop-config-mgmt/2.5.0',
-			'itop-datacenter-mgmt/2.5.0'
+			'itop-config-mgmt/2.6.0',
+			'itop-datacenter-mgmt/2.6.0',
+			'itop-virtualization-mgmt/2.6.0',
+			'itop-storage-mgmt/2.6.0'
 		),
 		'mandatory' => false,
 		'visible' => true,

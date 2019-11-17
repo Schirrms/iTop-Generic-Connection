@@ -8,7 +8,7 @@
 	<version>0.7.3</version>
 	<release_date>2019-11-17</release_date>
 	<version_description><![CDATA[Molkobain's Datacenter add-in are now a separate extension, beta relese preparation]]></version_description>
-	<itop_version_min>2.5.0</itop_version_min>
+	<itop_version_min>2.6.0</itop_version_min>
 	<status>beta</status>
 	<mandatory>false</mandatory>
 	<more_info_url>https://github.com/Schirrms/iTop-Generic-Connection</more_info_url>
