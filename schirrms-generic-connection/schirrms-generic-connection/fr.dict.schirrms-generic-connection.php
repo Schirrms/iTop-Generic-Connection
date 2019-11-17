@@ -71,6 +71,7 @@ Dict::Add('FR FR', 'French', 'Français', array(
 	'Class:lnkGenericCommInterfaceToGenericCommVirtInterface/Attribute:genericvirtcomminterface_id_friendlyname' => 'Nom de l\'interface générique virtuelle',
 	'Class:GenericCommDeviceType' => 'Catégorie d\'équipement de connexion générique',
 	'Class:GenericCommDeviceType/Attribute:name' => 'Nom de la catégorie',
+	'Class:GenericCommDeviceType/Attribute:comment' => 'Commentaire',
 	'Class:GenericCommDeviceType/Attribute:genericcommdevices_list' => 'Equipements dans cette catégorie',
 	'Class:lnkConnectableCIToConnectableCI0' => 'Table 0 de liens équipements connectés impactants / impactés',
 	'Class:lnkConnectableCIToConnectableCI0/Attribute:impactorci_id' => 'Equipement connecté impactant',

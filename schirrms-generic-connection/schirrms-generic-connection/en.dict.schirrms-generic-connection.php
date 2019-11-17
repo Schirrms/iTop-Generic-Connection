@@ -71,6 +71,7 @@ Dict::Add('EN US', 'English', 'English', array(
 	'Class:lnkGenericCommInterfaceToGenericCommVirtInterface/Attribute:genericvirtcomminterface_id_friendlyname' => 'Virtual Interface Name',
 	'Class:GenericCommDeviceType' => 'Generic Connection Device Category',
 	'Class:GenericCommDeviceType/Attribute:name' => 'Category Name',
+	'Class:GenericCommDeviceType/Attribute:comment' => 'Comments',
 	'Class:GenericCommDeviceType/Attribute:genericcommdevices_list' => 'Devices of this category',
 	'Class:lnkConnectableCIToConnectableCI0' => 'Link Generic Connected Impactor / impacted CI Table 0',
 	'Class:lnkConnectableCIToConnectableCI0/Attribute:impactorci_id' => 'Impactor Connected CI',

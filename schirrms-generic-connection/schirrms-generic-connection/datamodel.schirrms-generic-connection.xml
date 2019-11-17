@@ -65,9 +65,6 @@
 				</details>
 				<list>
 					<items>
-						<item id="name">
-							<rank>10</rank>
-						</item>
 						<item id="comment">
 							<rank>20</rank>
 						</item>
@@ -156,9 +153,6 @@
 				</search>
 				<list>
 					<items>
-						<item id="name">
-							<rank>10</rank>
-						</item>
 						<item id="comment">
 							<rank>20</rank>
 						</item>
@@ -311,9 +305,6 @@
 						<item id="bitspeed">
 							<rank>10</rank>
 						</item>
-						<item id="humanspeed">
-							<rank>20</rank>
-						</item>
 						<item id="comment">
 							<rank>30</rank>
 						</item>
@@ -398,21 +389,12 @@
 						<item id="comment">
 							<rank>20</rank>
 						</item>
-						<item id="virtualcommredundancy_list">
-							<rank>30</rank>
-						</item>
 					</items>
 				</search>
 				<list>
 					<items>
-						<item id="name">
-							<rank>10</rank>
-						</item>
 						<item id="comment">
 							<rank>20</rank>
-						</item>
-						<item id="virtualcommredundancy_list">
-							<rank>30</rank>
 						</item>
 					</items>
 				</list>
@@ -969,13 +951,16 @@
 				</search>
 				<list>
 					<items>
-						<item id="name">
+						<item id="connectableci_id">
 							<rank>10</rank>
 						</item>
-						<item id="physicaladdress">
+						<item id="connectableci_id_finalclass_recall">
+							<rank>15</rank>
+						</item>
+						<item id="name">
 							<rank>20</rank>
 						</item>
-						<item id="connectableci_id">
+						<item id="physicaladdress">
 							<rank>30</rank>
 						</item>
 						<item id="physcommtype_id">
@@ -987,14 +972,17 @@
 						<item id="humanspeed_id">
 							<rank>60</rank>
 						</item>
+						<item id="connection_impact">
+							<rank>80</rank>
+						</item>
 						<item id="connected_to_device_id">
 							<rank>90</rank>
 						</item>
+						<item id="connected_to_device_id_finalclass_recall">
+							<rank>95</rank>
+						</item>
 						<item id="connected_to_id">
 							<rank>100</rank>
-						</item>
-						<item id="connection_impact">
-							<rank>110</rank>
 						</item>
 					</items>
 				</list>
@@ -1285,6 +1273,11 @@
 				</reconciliation>
 			</properties>
 			<fields>
+				<field id="comment" xsi:type="AttributeText">
+					<sql>comment</sql>
+					<default_value/>
+					<is_null_allowed>true</is_null_allowed>
+				</field>
 				<field id="genericcommdevices_list" xsi:type="AttributeLinkedSet">
 					<linked_class>GenericCommDevice</linked_class>
 					<ext_key_to_me>genericcommdevicetype_id</ext_key_to_me>
@@ -1301,14 +1294,17 @@
 						<item id="name">
 							<rank>10</rank>
 						</item>
-						<item id="genericcommdevices_list">
+						<item id="comment">
 							<rank>20</rank>
+						</item>
+						<item id="genericcommdevices_list">
+							<rank>30</rank>
 						</item>
 					</items>
 				</details>
 				<search>
 					<items>
-						<item id="name">
+						<item id="comment">
 							<rank>10</rank>
 						</item>
 					</items>
@@ -1317,6 +1313,9 @@
 					<items>
 						<item id="name">
 							<rank>10</rank>
+						</item>
+						<item id="comment">
+							<rank>20</rank>
 						</item>
 					</items>
 				</list>
@@ -2211,11 +2210,6 @@
 										<item id="enclosure_id">
 											<rank>70</rank>
 										</item>
-										<!-- depends on molkobains datacenter view 
-										<item id="position_v">
-											<rank>72</rank>
-										</item>
-										-->
 										<item id="nb_u">
 											<rank>73</rank>
 										</item>
@@ -2358,10 +2352,10 @@
 						<item id="location_id">
 							<rank>40</rank>
 						</item>
-						<item id="brand_id">
+						<item id="genericcommdevicetype_id">
 							<rank>50</rank>
 						</item>
-						<item id="genericcommdevicetype_id">
+						<item id="brand_id">
 							<rank>60</rank>
 						</item>
 						<item id="model_id">
@@ -2370,11 +2364,6 @@
 						<item id="serialnumber">
 							<rank>80</rank>
 						</item>
-						<!-- depends on Molkobains datacenter view
-						<item id="position_v">
-							<rank>155</rank>
-						</item>
-						-->
 						<item id="nb_u">
 							<rank>160</rank>
 						</item>
