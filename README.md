@@ -13,15 +13,15 @@ This extension is an evolution of the now discontinued iTop-generic-comm-interfa
 
 * [Usage](#Usage)
 
-  * [Walking trough an existing configuration](#Walking trough an existing configuration)
+  * [Walking trough an existing configuration](#Walkingtroughanexistingconfiguration)
 
-  * [Find other information](#Find other information)
+  * [Find other information](#Findotherinformation)
 
-  * [Adding, devices, interfaces](#Adding, devices, interfaces)
+  * [Adding devices or interfaces](#Addingdevicesorinterfaces)
 
-    * [Adding Physical and Virtual interfaces to existing class of CI](#Adding Physical and Virtual interfaces to existing class of CI)
+    * [Adding Physical and Virtual interfaces to existing class of CI](#AddingPhysicalandVirtualinterfacestoexistingclassofCI)
 
-    * [Creation of a Generic Connection Device](#Creation of a Generic Connection Device)
+    * [Creation of a Generic Connection Device](#CreationofaGenericConnectionDevice)
 
 * [Thanks](#Thanks)
 
@@ -138,7 +138,7 @@ And then, choosing 10 Gb/s, and then the 'Interfaces running at this speed' you 
 
 ![Speed Interfaces List](images/Speed-Interfaces-List.png)
 
-## Adding, devices, interfaces
+## Adding devices or interfaces
 
 ### Adding Physical and Virtual interfaces to existing class of CI
 
