@@ -3,11 +3,43 @@ Creates Generic Connection Devices and Interfaces, instead of specialized Networ
 
 This extension is an evolution of the now discontinued iTop-generic-comm-interface
 
+# Table of Content
+
+* [iTop-Generic-Connection](#iTop-Generic-Connection)
+
+  * [State](#State)
+
+* [Goal](#Goal)
+
+* [Usage](#Usage)
+
+  * [Walking trough an existing configuration](#Walking trough an existing configuration)
+
+  * [Find other information](#Find other information)
+
+  * [Adding, devices, interfaces](#Adding, devices, interfaces)
+
+    * [Adding Physical and Virtual interfaces to existing class of CI](#Adding Physical and Virtual interfaces to existing class of CI)
+
+    * [Creation of a Generic Connection Device](#Creation of a Generic Connection Device)
+
+* [Thanks](#Thanks)
+
+* [Installation](#Installation)
+
+  * [Dependencies](#Dependencies)
+
+  * [Download](#Download)
+
+* [Releases](#Releases)
+
 ## State
 
 Technically, this extension is still in beta. In fact, the subject was much bigger than I tought, and I may have missed some points. So, it's too early to put it in a real production, but I don't think that some big changes are to come. specifically, I think the Database Schema is OK now and should not have 'destructive changes'.
 
 But I'm really interested knowing your opinion about this extension, and don't hesitate to put your comments on this forum.
+
+[iTop Generic Connection Extension Beta Available](https://sourceforge.net/p/itop/discussion/922360/thread/66a4dd2310/)
 
 # Goal
 
@@ -19,7 +51,7 @@ Virtual interfaces are also available, and link between virtual interfaces and o
 
 Also, this extension permit direct attach between devices so don't be surprised to see the possibility to interconnect servers (for a back to back connection, maybe)
 
-Redundancy is available also : you can have a virtual interface over two physical interfaces and says that only life can continue with only one physical interfaces up.
+Redundancy is available also : you can have a virtual interface over two physical interfaces and says that  life can continue with only one physical interfaces up.
 
 There is also a 'Generic Connection Device' for the same reason.
 
