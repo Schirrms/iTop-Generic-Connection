@@ -5,33 +5,33 @@ This extension is an evolution of the now discontinued iTop-generic-comm-interfa
 
 # Table of Content
 
-* [iTop-Generic-Connection](#iTop-Generic-Connection)
+* [iTop-Generic-Connection](#itop-generic-connection)
 
-  * [State](#State)
+  * [State](#state)
 
-* [Goal](#Goal)
+* [Goal](#goal)
 
-* [Usage](#Usage)
+* [Usage](#usage)
 
-  * [Walking trough an existing configuration](#Walkingtroughanexistingconfiguration)
+  * [Walking trough an existing configuration](#walking-trough-an-existing-configuration)
 
-  * [Find other information](#Findotherinformation)
+  * [Find other information](#find-other-information)
 
-  * [Adding devices or interfaces](#Addingdevicesorinterfaces)
+  * [Adding devices or interfaces](#adding-devices-or-interfaces)
 
-    * [Adding Physical and Virtual interfaces to existing class of CI](#AddingPhysicalandVirtualinterfacestoexistingclassofCI)
+    * [Adding Physical and Virtual interfaces to existing class of CI](#adding-physical-and-virtual-interfaces-to-existing-class-of-ci)
 
-    * [Creation of a Generic Connection Device](#CreationofaGenericConnectionDevice)
+    * [Creation of a Generic Connection Device](#creation-of-a-generic-connection-device)
 
-* [Thanks](#Thanks)
+* [Thanks](#thanks)
 
-* [Installation](#Installation)
+* [Installation](#installation)
 
-  * [Dependencies](#Dependencies)
+  * [Dependencies](#dependencies)
 
-  * [Download](#Download)
+  * [Download](#download)
 
-* [Releases](#Releases)
+* [Releases](#releases)
 
 ## State
 
