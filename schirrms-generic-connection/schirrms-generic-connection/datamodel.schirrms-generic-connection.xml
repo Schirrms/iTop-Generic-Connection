@@ -960,6 +960,9 @@
 						<item id="name">
 							<rank>20</rank>
 						</item>
+						<item id="comment">
+							<rank>25</rank>
+						</item>
 						<item id="physicaladdress">
 							<rank>30</rank>
 						</item>
@@ -1304,16 +1307,16 @@
 				</details>
 				<search>
 					<items>
-						<item id="comment">
+						<item id="name">
 							<rank>10</rank>
+						</item>
+						<item id="comment">
+							<rank>20</rank>
 						</item>
 					</items>
 				</search>
 				<list>
 					<items>
-						<item id="name">
-							<rank>10</rank>
-						</item>
 						<item id="comment">
 							<rank>20</rank>
 						</item>
