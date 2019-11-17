@@ -1321,14 +1321,14 @@
 						<attribute id="name"/>
 					</attributes>
 				</reconciliation>
-				<uniqueness_rules>
-					<rule id="friendlyname">
-						<attribute id="friendlyname"/>
+				<!--<uniqueness_rules>
+					<rule id="name">
+						<attribute id="name"/>
 						<filter/>
 						 <disabled>false</disabled>
 						<is_blocking>true</is_blocking>
 					</rule>
-				</uniqueness_rules>
+				</uniqueness_rules>-->
 			</properties>
 			<fields>
 				<field id="comment" xsi:type="AttributeText">
