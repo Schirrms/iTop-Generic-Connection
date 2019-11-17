@@ -1322,8 +1322,8 @@
 					</attributes>
 				</reconciliation>
 				<uniqueness_rules>
-					<rule id="name">
-						<attribute id="name"/>
+					<rule id="friendlyname">
+						<attribute id="friendlyname"/>
 						<filter/>
 						 <disabled>false</disabled>
 						<is_blocking>true</is_blocking>
