@@ -376,7 +376,9 @@
 				</reconciliation>
 				<uniqueness_rules>
 					<rule id="name">
-						<attribute id="name"/>
+						<attributes>
+							<attribute id="name"/>
+						</attributes>
 						<filter/>
 						 <disabled>false</disabled>
 						<is_blocking>true</is_blocking>
