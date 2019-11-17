@@ -26,6 +26,14 @@
 						<attribute id="name"/>
 					</attributes>
 				</reconciliation>
+				<uniqueness_rules>
+					<rule id="name">
+						<attribute id="name"/>
+						<filter/>
+						 <disabled>false</disabled>
+						<is_blocking>true</is_blocking>
+					</rule>
+				</uniqueness_rules>
 			</properties>
 			<fields>
 				<field id="name" xsi:type="AttributeString">
@@ -104,6 +112,14 @@
 						<attribute id="name"/>
 					</attributes>
 				</reconciliation>
+				<uniqueness_rules>
+					<rule id="name">
+						<attribute id="name"/>
+						<filter/>
+						 <disabled>false</disabled>
+						<is_blocking>true</is_blocking>
+					</rule>
+				</uniqueness_rules>
 			</properties>
 			<fields>
 				<field id="name" xsi:type="AttributeString">
@@ -182,6 +198,14 @@
 						<attribute id="humanspeed"/>
 					</attributes>
 				</reconciliation>
+				<uniqueness_rules>
+					<rule id="bitspeed">
+						<attribute id="bitspeed"/>
+						<filter/>
+						 <disabled>false</disabled>
+						<is_blocking>true</is_blocking>
+					</rule>
+				</uniqueness_rules>
 			</properties>
 			<fields>
 				<field id="humanspeed" xsi:type="AttributeString">
@@ -344,6 +368,14 @@
 						<attribute id="name"/>
 					</attributes>
 				</reconciliation>
+				<uniqueness_rules>
+					<rule id="name">
+						<attribute id="name"/>
+						<filter/>
+						 <disabled>false</disabled>
+						<is_blocking>true</is_blocking>
+					</rule>
+				</uniqueness_rules>
 			</properties>
 			<fields>
 				<field id="name" xsi:type="AttributeString">
@@ -1289,6 +1321,14 @@
 						<attribute id="name"/>
 					</attributes>
 				</reconciliation>
+				<uniqueness_rules>
+					<rule id="name">
+						<attribute id="name"/>
+						<filter/>
+						 <disabled>false</disabled>
+						<is_blocking>true</is_blocking>
+					</rule>
+				</uniqueness_rules>
 			</properties>
 			<fields>
 				<field id="comment" xsi:type="AttributeText">

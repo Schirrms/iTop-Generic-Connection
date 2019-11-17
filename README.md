@@ -23,6 +23,8 @@ This stays on the OSI level 1 or 2, I'm not sure (yet) that this should include 
 
 # Usage
 
+## Walking trough an existing configuration
+
 After installation, you have one new kind of CI, Generic Connection Device. This device can be a Network Switch, a SAN Switch, or any kind of device you use to interconnect other CI. One could choose to put physical firewall in that category.
 
 You'll also find for all your connectable CI two nex tabs :
@@ -46,7 +48,65 @@ OK, so far, so good, but what for ?
 
 For once, all kind of interfaces are in one tab and I think it's easier to manage
 
-Also, you can build in iTop nearly any 'real life configuration', and you can show it. For instance here is the 'depend on' view for the Vmotion VMkernel 
+Also, you can build in iTop nearly any 'real life configuration', and you can show it. For instance here is the 'depend on' view for the Vmotion VMkernel :
+
+![ESX01 VMotion VM-kernel depends on](images/vmdk-depends-on.png)
+
+More interesting, if we go on the other end, on one switch interface, in that case xe-1/0/2, and show the impact :
+
+![sw01 xe-1/0/2 impacts](images/xe-1-0-2-impacts.png)
+
+So, all is good, we see that the loss of this interface (alone !) is not a big deal as long as vmnic4 is still up (and we also see all parts of the configuration that depends on vSwitch1)
+
+But, even if it the real map of connections, in case of a malfunction, we are generally most interested in a more 'high level map' (I have a trouble on sw01, what is the impact on my Information System ?).
+
+Not to worry, the extension did all the dirty calculation for you :
+
+![sw01 impacts](images/sw01-impacts.png)
+
+Or, from the ESXi perspective :
+
+![esxi01 depends on](images/esx01-depends-on.png)
+
+Here is an interesting aspect : the StorSAS01 is shown as 0/1 and not 0/2. Why ? Shall we see ?
+
+I have two physical SAS interfaces, and one Virtual interface over it. From the vSAS esx01 point of vue, the path are redundant :
+
+![esxi01 SAS Paths](images/esxi01-SAS-Paths.png)
+
+Well, yes, the paths are redundant, but the storage system is not (there is only one storage system !) So, even with two paths between the ESXi server and the storage area, if the storage area is down, the ESXi will probably encounter some troubles...
+
+This is even more visible from the 'impacts' view of StorSAS01 :
+
+![StorSAS01 impacts](images/StorSAS01-impacts.png)
+
+## Adding, devices, interfaces
+
+For the existing devices, just add, modify or remove devices as before. The changes are in the two new tabs "Physical Connection Interface(s)" and "Virtual Connection Interface(s)"
+
+I'll add a new esx,named esx02. This is the same server as esx01, I could export esx01 interfaces and import them, but that's not the goal !
+
+![Creation of a new server](images/New-ci-Server.png)
+
+I just put a name (esx02) and select the 'Physical Connection Interface(s)' Tab :
+
+![Add Physical Interfaces](images/New-Server-add-Physical-Interface.png)
+
+After selecting 'Create a new Physical Connection Interface', you see (already filled) :
+
+![New Physical Interfaces](images/New-Physical-Interface.png)
+
+In that view, you a few 'text' fields fields : Name, Physical Layer Address and Comments. The other fields are in facts items from external lists (Again, forget 'cable id')
+
+For Physical connector type, you'll have at the beginning ... Nothing, witch is annoying as this field (as is 'Connection Protocol') is mandatory! Pushing the '+' sign will let you create your connectors :
+
+![New Connector Creation](images/New-Connector-Creation.png)
+
+Same song for Connection Protocol.
+
+For interface Speed, it's a little different : If you create a new speed, the speed is to give in b/s (yes, bits/second, witch gives a lot of 0 novadays...) But you'll have to do that only once, after that you'll see speed in a more comfortable way : 24 Gb/s is a little easier to read than 24000000000 b/s in my opinion.
+
+![New Speed Creation](images/Speed-Creation.png)
 
 # Installation
 
