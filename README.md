@@ -3,6 +3,12 @@ Creates Generic Connection Devices and Interfaces, instead of specialized Networ
 
 This extension is an evolution of the now discontinued iTop-generic-comm-interface
 
+## State
+
+Technically, this extension is still in beta. In fact, the subject was much bigger than I tought, and I may have missed some points. So, it's too early to put it in a real production, but I don't think that some big changes are to come. specifically, I think the Database Schema is OK now and should not have 'destructive changes'.
+
+But I'm really interested knowing your opinion about this extension, and don't hesitate to put your comments on this forum.
+
 # Goal
 
 Itop come with a network interface really IP oriented. If you add the datacenter module, then you'll also have a SAN interface type.
@@ -80,7 +86,29 @@ This is even more visible from the 'impacts' view of StorSAS01 :
 
 ![StorSAS01 impacts](images/StorSAS01-impacts.png)
 
+## Find other information
+
+I'm not a big fan of text field when it come of things that you have many times. So I created a lot of 'Categories' :
+
+* **Interface speed** : I think that the speed of an interface is a limited choice. No need to write down again an again the speed (possibly, if the field is 'free', in different format : one will set all speed in Mb/s to gain 6 zeroes, another will set speed in Gb/s to gain 9 zeroes..)
+* **Connector type** : Do you really have more than 10 kind of connectors to interconnect all your information system? We don't :)
+* **Connection protocol** : for a lot of company nowadays, Ethernet will be enough here
+* **Generic Connection device Category** : until now, iTop only knew two of them : Network Device and SAN Switches.
+* **Redundancy Mode** : Again, 5 to 10 categories is more than enough in my knowledge.
+
+As all these Categories are iTop classes, you have an access from the 'Configuration Management' --> 'Overview Panel (in the 'Miscellaneous' Category)' so you can find all your connector type, or Redundancy protocol in one place.
+
+For the Speed, on my test system, You see that :
+
+![Speed List](images/Speed-Selector.png)
+
+And then, choosing 10 Gb/s, and then the 'Interfaces running at this speed' you have a complete list of these interfaces :
+
+![Speed Interfaces List](images/Speed-Interfaces-List.png)
+
 ## Adding, devices, interfaces
+
+### Adding Physical and Virtual interfaces to existing class of CI
 
 For the existing devices, just add, modify or remove devices as before. The changes are in the two new tabs "Physical Connection Interface(s)" and "Virtual Connection Interface(s)"
 
@@ -108,7 +136,97 @@ For interface Speed, it's a little different : If you create a new speed, the sp
 
 ![New Speed Creation](images/Speed-Creation.png)
 
+If you choose to set-up a connection to a remote device at this time, you get a full list of all compatible devices (I probably could improve the filter here...) :
+
+![Connection to remote device](images/New-Physical-Interface-Remote-Device.png)
+
+But then, in the 'Interface connected on remote device' you only see compatible interface (same protocol, connector can be different) and non connected, so you can get an empty list.
+
+If you choose a compatible device with non connected ports, you'll see something like that :
+
+![Connection to remote interface](images/New-Physical-Interface-Remote-Interface.png)
+
+Just continue until all your physical Interfaces are setup, and then you can go to the 'Virtual Connection Interface(s)' Tab.
+
+![New Virtual Interface](images/New-Virtual-Interface.png)
+
+Same logic as New-Physical-Interface. Mandatory fields are 'Name', 'Redundancy kind' and 'Connection Protocol'.
+
+**About the 'redundancy kind' field** : In this field, you explain the redundancy used by the equipment. That can be LACP, or just Active/Passive, or whatever. If your virtual Interface doesn't build a redundancy protocol, I suggest the use of something like 'direct' or 'none'. In any case, that field has no impact in the way iTop compute the redundancy (this will come later).
+
+'Et voilà', all your interfaces (physical and virtual) are added to your server (8 of each in my sample, see above). But hold on, the redundancy is not good at all ?
+
+![esx02 wrong redundancy](images/esx02-redundancy-1.png)
+
+This is totally normal ! We created virtual and physical interfaces, but no link between them !
+
+And here come the 'tricky part' of the story : as the link are on the interface level, we have to set-up those links on the interfaces, too, not on the device. Seems understandable to me, but a little strange in operation (That is only a short adaptation time).
+
+So, back to our server, in the 'virtual interface tab', click on one interface to configure, and then, click modify.
+
+Here for vSwitch0 :
+
+![Virtual Interface add parent interfaces](images/Virtual-Interface-add-Parent-1.png)
+
+You should not have any changes to do in that tab.  Click on the 'Parent Interface'.
+
+![Virtual Interface add parent interfaces](images/Virtual-Interface-add-Parent-2.png)
+
+In the bottom part, you set the redundancy configuration as seen by iTop. The default value, shown here, works quite well for a resilient double attachment to the network. If the is no resilience (for example, one vlanized sub interface under an already resilient main interface on a server), then the best choice is 'The virtual Interface is up if all parent interfaces are Up'
+
+you can actually add parent interfaces in the upper part of the screen. Here, you will see all interfaces of this device with the same protocol, excluding the interface you are working on. Yes, physical and virtual interfaces. While it's maybe not very common, this is a configuration I need in most of my servers (VLAN over a bonding, different VM networks over a set of adapters...)
+
+for our test esx, and for an Ethernet virtual port, the list is long :
+
+![Virtual Interface potential Ethernet Parent](images/Virtual-Interface-add-Parent-3.png)
+
+I created 16 interfaces, 13 of them are using Ethernet as protocol. Excluding this one, I have 12 choices.
+
+In that case, I just have to connect vmnic0 and vmnic1
+
+Same configuration for vSwitch 1 and vSAS. But for vSAS, as I had only two other interfaces of the same protocol, the choice was easier :)
+
+for the 5 other Virtual interfaces, the choice is quite different : 
+
+* Each of these interface are connected to one virtual interface (vSwitch0 or vSwitch1) 
+
+* No redundancy
+
+for vmk0, this is the result :
+
+![Virtual Interface without redundancy](images/Virtual-Interface-add-Parent-4.png)
+
+It's done ! A little complicated if you plan (as me) to put every step of your configuration, but this is really helpful after that step. And I really hope to build most if not all of the internal relations in a server automatically.
+
+* **Point of attention** : as it is possible to link nearly anything in a system, it's also possible to create loops. I didn't test the effect, but probably not fine... Be careful!
+
+### Creation of a Generic Connection Device
+
+This step is much easier : You have to have in mind that a generic Connection Device is just an interconnection device.
+
+You set it up like a Network Switch. Of course, the interface are Generic Physical and Generic Virtual Interfaces, but there is no differences for that kind of device.
+
+There is only one point of attention : 
+
+As a 'Generic Connection Device' can be a little to generic as category, there is a new mandatory field : 'Device Category'. You can see that as a sub category of Generic Connection Device, but this one is only useful in filter, or to find say all 'Network switches' or all 'FC SAN Devices'.
+
+# Thanks
+
+I really want to thanks :
+
+* The whole Combodo team who brings to us such a remarkable (an nearly unbreakable!) tool
+* All the people on the iTop forum, including but not only Guillaume Lajarige/ Molkobain, Pierre Goiffon, Jeffrey, vdumas...
+* ... You ! You who read that far !
+
 # Installation
+
+## Dependencies
+
+I think that this extension has no specific constraints. It should install on a very minimal iTop installation. The 'Datacenter part is needed (and, normally, the extension should not install without this part)'
+
+Until today, I had the feeling that this extension should work in itop starting in version 2.5.0, but today, I add some uniqueness rules, and that is a part of iTop 2.6, so better to install on a 2.6.x or newer version.
+
+## Download
 
 As for all my extensions, just download the zip file, and copy the 'schirrms-...' directory in your extensions directory, then rerun the setup as usual.
 
