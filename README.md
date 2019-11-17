@@ -1,34 +1,30 @@
-# iTop-generic-comm-interface
-Create a generic network interface, instead of the existing Network an SAN interface
+# iTop-Generic-Connection
+Creates Generic Connection Devices and Interfaces, instead of specialized Network Devices /interfaces, SAN Devices/interfaces...
 
-[TOC]
-
-## Changes
-
-This is basically a clone of iTop-generic-comm-interface for two reasons :
-
-1) the name was confusing, as this extension brings much more than a comm interface, here is the complete set
-
-2) due to the grow of the project, some refacturing was needed, but as this will change things also in the database, this need a fresh install on a fresh iTop.
+This extension is an evolution of the now discontinued iTop-generic-comm-interface
 
 # Goal
 
 Itop come with a network interface really IP oriented. If you add the datacenter module, then you'll also have a SAN interface type.
 
-I plan to create a more generic kind of interface, with a 'connector type' (Fiber, RJ-45, RS-232, ...) and a 'protocol-type' (Ethernet, FC, FCoE, ...)
+This extension adds a more generic kind of interface, with a 'connector type' (Fiber, RJ-45, RS-232, ...) and a 'protocol-type' (Ethernet, FC, FCoE, ...)
 
-This should stay on the OSI level 1 or 2, I'm not sure (yet) that this should include high level information (IP address, gateway...)
+Virtual interfaces are also available, and link between virtual interfaces and others interfaces (using the same protocol) is possible, allowing a complete (and complex :)) representation of the configuration.
 
-Of course, I'll have to build also a 'iTop-generic-switch' CI to connect the whole together !
+Redundancy is available also : you can have a virtual interface over two physical interfaces and says that only life can continue with only one physical interfaces up.
 
-# Warning
+There is also a 'Generic Connection Device' for the same reason.
 
-This development is in a very early stage. It could be major changes, including in the data structure. You don't want do install this extension in a real iTop environment (not yet !)
+Also, you build the connection between the equipment at an interface level (Eth0 of server1 is connected on port 4 of switch0) and iTop builds for you the higher dependencies (server1 depends on switch0)
 
-**You really really wont do that...**
-
-As this is still a work in progress, there are no 'label' for all text fields.
+This stays on the OSI level 1 or 2, I'm not sure (yet) that this should include high level information (IP address, gateway...)
 
 # Installation
 
 As for all my extensions, just download the zip file, and copy the 'schirrms-...' directory in your extensions directory, then rerun the setup as usual.
+
+Or you can instead just download a 'release zip' and unzip this release in your extension directory.
+
+# Releases
+
+* [0.7.3-beta](schirrms-generic-connection-release-0.7.3-beta.zip)	2019-11-17	First 'public beta', stable enough in my opinion
