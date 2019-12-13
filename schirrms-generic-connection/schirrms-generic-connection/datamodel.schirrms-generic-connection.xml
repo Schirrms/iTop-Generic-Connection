@@ -2878,6 +2878,25 @@
 	-> <rnk>5</rank> is the horizontal order in the box. so seems also to be the dashlet id..
 	-->
 	<menus>
+		<menu id="WelcomeMenuPage" xsi:type="DashboardMenuNode" _delta="must_exist">
+			<rank>10</rank>
+			<parent>WelcomeMenu</parent>
+			<definition>
+				<layout>DashboardLayoutOneCol</layout>
+				<title/>
+				<cells>
+					<cell id="0" _delta="must_exist">
+						<rank>0</rank>
+						<dashlets>
+							<dashlet id="9" xsi:type="DashletBadge" _delta="define">
+								<rank>8</rank>
+								<class>GenericCommDevice</class>
+							</dashlet>
+						</dashlets>
+					</cell>
+				</cells>
+			</definition>
+		</menu>
 		<menu id="ConfigManagementOverview" xsi:type="DashboardMenuNode" _delta="must_exist">
 			<rank>1</rank>
 			<parent>ConfigManagement</parent>
@@ -2885,7 +2904,7 @@
 				<layout>DashboardLayoutOneCol</layout>
 				<title/>
 				<cells>
-					<cell id="0" _delta="must_exist">
+					<cell id="0" _delta="must_exist"> <!-- Intrastrucure -->
 						<rank>0</rank>
 						<dashlets>
 							<dashlet id="99" xsi:type="DashletBadge" _delta="define">
