@@ -1272,39 +1272,39 @@
 					<on_target_delete>DEL_AUTO</on_target_delete>
 				</field>
 			</fields>
-		<methods/>
-		<presentation>
-			<details>
-				<items>
-					<item id="genericcomminterface_id">
-						<rank>10</rank>
-					</item>
-					<item id="genericcommvirtinterface_id">
-						<rank>20</rank>
-					</item>
-				</items>
-			</details>
-			<search>
-				<items>
-					<item id="genericcomminterface_id">
-						<rank>10</rank>
-					</item>
-					<item id="genericcommvirtinterface_id">
-						<rank>20</rank>
-					</item>
-				</items>
-			</search>
-			<list>
-				<items>
-					<item id="genericcomminterface_id">
-						<rank>10</rank>
-					</item>
-					<item id="genericcommvirtinterface_id">
-						<rank>20</rank>
-					</item>
-				</items>
-			</list>
-		</presentation>
+			<methods/>
+			<presentation>
+				<details>
+					<items>
+						<item id="genericcomminterface_id">
+							<rank>10</rank>
+						</item>
+						<item id="genericcommvirtinterface_id">
+							<rank>20</rank>
+						</item>
+					</items>
+				</details>
+				<search>
+					<items>
+						<item id="genericcomminterface_id">
+							<rank>10</rank>
+						</item>
+						<item id="genericcommvirtinterface_id">
+							<rank>20</rank>
+						</item>
+					</items>
+				</search>
+				<list>
+					<items>
+						<item id="genericcomminterface_id">
+							<rank>10</rank>
+						</item>
+						<item id="genericcommvirtinterface_id">
+							<rank>20</rank>
+						</item>
+					</items>
+				</list>
+			</presentation>
 		</class>
 		<!-- *** All the stuffs for the GenericCommDevices *** -->
 		<!-- This class implements a GenericCommDeviceType The idea is to put here the global function of the Device : SAN switch, WAN Router ... -->
