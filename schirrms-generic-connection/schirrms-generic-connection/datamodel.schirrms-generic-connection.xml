@@ -1395,7 +1395,7 @@
 			<parent>cmdbAbstractObject</parent>
 			<properties>
 				<is_link>1</is_link>
-				<category>bizmodel</category>
+				<category></category>
 				<abstract>false</abstract>
 				<key_type>autoincrement</key_type>
 				<db_table>lnkconnectablecitoconnectableci0</db_table>
@@ -1476,7 +1476,7 @@
 			<parent>cmdbAbstractObject</parent>
 			<properties>
 				<is_link>1</is_link>
-				<category>bizmodel</category>
+				<category></category>
 				<abstract>false</abstract>
 				<key_type>autoincrement</key_type>
 				<db_table>lnkconnectablecitoconnectableci1</db_table>
@@ -1557,7 +1557,7 @@
 			<parent>cmdbAbstractObject</parent>
 			<properties>
 				<is_link>1</is_link>
-				<category>bizmodel</category>
+				<category></category>
 				<abstract>false</abstract>
 				<key_type>autoincrement</key_type>
 				<db_table>lnkconnectablecitoconnectableci2</db_table>
@@ -1638,7 +1638,7 @@
 			<parent>cmdbAbstractObject</parent>
 			<properties>
 				<is_link>1</is_link>
-				<category>bizmodel</category>
+				<category></category>
 				<abstract>false</abstract>
 				<key_type>autoincrement</key_type>
 				<db_table>lnkconnectablecitoconnectableci3</db_table>
@@ -1719,7 +1719,7 @@
 			<parent>cmdbAbstractObject</parent>
 			<properties>
 				<is_link>1</is_link>
-				<category>bizmodel</category>
+				<category></category>
 				<abstract>false</abstract>
 				<key_type>autoincrement</key_type>
 				<db_table>lnkconnectablecitoconnectableci4</db_table>
@@ -1800,7 +1800,7 @@
 			<parent>cmdbAbstractObject</parent>
 			<properties>
 				<is_link>1</is_link>
-				<category>bizmodel</category>
+				<category></category>
 				<abstract>false</abstract>
 				<key_type>autoincrement</key_type>
 				<db_table>lnkconnectablecitoconnectableci5</db_table>
@@ -1881,7 +1881,7 @@
 			<parent>cmdbAbstractObject</parent>
 			<properties>
 				<is_link>1</is_link>
-				<category>bizmodel</category>
+				<category></category>
 				<abstract>false</abstract>
 				<key_type>autoincrement</key_type>
 				<db_table>lnkconnectablecitoconnectableci6</db_table>
@@ -1962,7 +1962,7 @@
 			<parent>cmdbAbstractObject</parent>
 			<properties>
 				<is_link>1</is_link>
-				<category>bizmodel</category>
+				<category></category>
 				<abstract>false</abstract>
 				<key_type>autoincrement</key_type>
 				<db_table>lnkconnectablecitoconnectableci7</db_table>
@@ -2043,7 +2043,7 @@
 			<parent>cmdbAbstractObject</parent>
 			<properties>
 				<is_link>1</is_link>
-				<category>bizmodel</category>
+				<category></category>
 				<abstract>false</abstract>
 				<key_type>autoincrement</key_type>
 				<db_table>lnkconnectablecitoconnectableci8</db_table>
@@ -2124,7 +2124,7 @@
 			<parent>cmdbAbstractObject</parent>
 			<properties>
 				<is_link>1</is_link>
-				<category>bizmodel</category>
+				<category></category>
 				<abstract>false</abstract>
 				<key_type>autoincrement</key_type>
 				<db_table>lnkconnectablecitoconnectableci9</db_table>
@@ -2837,22 +2837,6 @@
 				</relation>
 			</relations>
 		</class>
-		<!-- The Class Enclosure here create a dependency to the Connected Enclosure extention 
-		<class id="Enclosure" _delta="must_exist">
-			<presentation>
-				<details>
-					<items>
-						<item id="genericcommphysinterface_list" _delta="define">
-							<rank>55</rank>
-						</item>
-						<item id="genericcommvirtinterface_list" _delta="define">
-							<rank>56</rank>
-						</item>
-					</items>
-				</details>
-			</presentation>
-		</class>
-		-->
 		<class id="NAS" _delta="must_exist">
 			<presentation>
 				<details>
