@@ -37,9 +37,11 @@ This extension is an evolution of the now discontinued iTop-generic-comm-interfa
 
 Technically, this extension is still in beta. In fact, the subject was much bigger than I tought, and I may have missed some points. So, it's too early to put it in a real production, but I don't think that some big changes are to come. specifically, I think the Database Schema is OK now and should not have 'destructive changes'.
 
+(2 years later : This extension still works for us. It could be at least seen as an RC extension !)
+
 But I'm really interested knowing your opinion about this extension, and don't hesitate to put your comments on this forum.
 
-[iTop Generic Connection Extension Beta Available](https://sourceforge.net/p/itop/discussion/922360/thread/66a4dd2310/)
+[iTop Generic Connection Extension Beta Available](https://sourceforge.net/p/itop/discussion/third-party-extensions/thread/66a4dd2310/)
 
 # Goal
 

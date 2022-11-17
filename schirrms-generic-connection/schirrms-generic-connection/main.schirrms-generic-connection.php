@@ -91,7 +91,7 @@ class GenericCommFunct
 	 * Hopefully an external class for all big functions in that package
 	 */
 
-	public function IterateVirtInterfaces($nLevel, $nInt_id, $nRealInt_id, $aVirtInterfaces)
+	public static function IterateVirtInterfaces($nLevel, $nInt_id, $nRealInt_id, $aVirtInterfaces)
 	{
 		$nLevel++ ;
 		$sOQL = "SELECT lnkGenericCommInterfaceToGenericCommVirtInterface WHERE genericcomminterface_id = :interface";
@@ -116,7 +116,7 @@ class GenericCommFunct
 		return $aVirtInterfaces;
 	}
 
-	public function UpdateCIDependencies($device_id, $searchImpact = TRUE)
+	public static function UpdateCIDependencies($device_id, $searchImpact = TRUE)
 	{
 		// $sDebugFile=$_SERVER['CONTEXT_DOCUMENT_ROOT']."/debug/dd-".date("Y-m-d").".txt";
 		// file_put_contents($sDebugFile, "BEGIN : ".date("H:i:s")."\n", FILE_APPEND);
